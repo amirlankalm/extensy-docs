@@ -1,0 +1,52 @@
+---
+title: "Manifest V3 Explained"
+description: "Why Extensy generates MV3 extensions and what that means."
+---
+
+# The Future of Extensions: Manifest V3
+
+If you've searched for Chrome extension tutorials recently, you've likely seen references to **Manifest V3** (MV3). In this guide, we'll explain why it matters and how Extensy handles the transition for you.
+
+## What is Manifest V3?
+
+Manifest V3 is the current, modern standard for development and publishing within the Google Chrome ecosystem. It was introduced to improve the **security, privacy, and performance** of extensions.
+
+## Why MV3 Matters
+
+- **CWS Requirement**: Google now requires Manifest V3 for all new submissions and is actively deprecating the older MV2 standard. 
+- **Security**: MV3 prevents "remote code execution," ensuring that every line of code your extension runs is bundled inside the ZIP at the time of submission.
+- **Privacy**: MV3 introduces more granular permissions, giving users more control over which sites an extension can access.
+- **Performance**: MV3 replaces persistent background pages with "service workers" that only run when needed, saving your system's battery and memory.
+
+## Key Differences: MV2 vs. MV3
+
+| Feature | Manifest V2 (Legacy) | Manifest V3 (Current) |
+| :--- | :--- | :--- |
+| **Background Script** | Persistent background page | Service worker (event-driven) |
+| **Network Interception** | `webRequest` (blocking) | `declarativeNetRequest` (static rules) |
+| **Code Injection** | Remote scripts allowed | Bundled local scripts only |
+| **Actions** | Browser / Page actions | Unified 'action' API |
+
+<Info>
+  **Important Note**: Extensy generates Manifest V3 extensions by default. You don't need to worry about the architectural differences; we handle the service worker events and declarative rules for you.
+</Info>
+
+## How Extensy Simplifies MV3
+
+Building an MV3 extension manually can be challenging, especially when dealing with service worker lifetimes or the `declarativeNetRequest` API. 
+
+1. **Automatic Service Workers**: We generate the `background.js` structure that Chrome expects.
+2. **Permission Scoping**: We ensure your manifest only requests the minimum necessary permissions for your prompt.
+3. **Action Consistency**: We use the modern `action` key instead of the deprecated `browser_action` or `page_action`.
+
+## Watch Out for Older Tutorials
+
+When browsing forums like StackOverflow, you may find code using `chrome.extension.getBackgroundPage()` or specifying `"manifest_version": 2`.
+
+<Tip>
+  If a tutorial refers to a `background.html` file or use `webRequest` to block URLs, it is likely using an outdated MV2 pattern. Extensy's generated code will always use the modern MV3 equivalents.
+</Tip>
+
+<Warning>
+  **Prohibited Logic**: MV3 does not allow `eval()` or injecting strings of code. If you try to manually add these to an Extensy extension, it will be rejected by the Chrome Web Store.
+</Warning>

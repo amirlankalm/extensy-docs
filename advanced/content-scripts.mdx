@@ -1,0 +1,78 @@
+---
+title: "Content Scripts"
+description: "How content scripts work and how to modify them."
+---
+
+# Injected Interactions: Content Scripts
+
+If you want your extension to touch a webpage—change its color, read its text, or hide its ads—you need a **Content Script**. This is the heart of every Extensy-powered interaction with site content.
+
+## What is a Content Script?
+
+A content script is a JavaScript file (and optionally a CSS file) that runs in the context of a specific webpage you load in your browser. It sits between your extension's background logic and the actual website.
+
+## Key Properties
+
+<CardGroup cols={2}>
+  <Card title="DOM Access" icon="brackets-curly">
+    Content scripts have full access to the webpage's DOM (elements, buttons, text).
+  </Card>
+  <Card title="Isolated World" icon="shield-halved">
+    They cannot access variables defined by the webpage's own JavaScript!
+  </Card>
+</CardGroup>
+
+## The "Run At" Values
+
+In your `manifest.json`, you'll see a `run_at` key for each content script. This tells Chrome when to "inject" your code.
+
+- **`document_start`**: Runs before the DOM is even constructed. Best for ad-blockers or CSS theme changers.
+- **`document_end`**: Runs after the HTML is parsed but before images are loaded. Good for reading text.
+- **`document_idle`**: **Recommended**: The default for Extensy. Runs when Chrome is free, providing a smooth user experience.
+
+## Matches Patterns: Telling Chrome Where to Run
+
+You must specify which websites your content script is allowed to touch.
+
+```json
+{
+  "matches": [
+    "https://*.wikipedia.org/*",
+    "https://*.google.com/*"
+  ]
+}
+```
+
+## Communication with Background Scripts
+
+Content scripts are powerful, but they have limitations: they can't access all Chrome APIs. To call a specialized API (like `downloads`), they must send a message to the **background service worker**.
+
+```javascript
+// Example: Sending data from content.js to background.js
+chrome.runtime.sendMessage({ action: "downloadReport", data: "The text I found" }, (response) => {
+    console.log("Background responded with: " + response.status);
+});
+```
+
+## DOM Manipulation Examples
+
+Using standard JavaScript, your content script can completely change a webpage's look:
+
+```javascript
+// Example: Hiding all images on a page
+const images = document.querySelectorAll('img');
+images.forEach(img => img.style.display = 'none');
+
+// Example: Injecting a button into the top of the body
+const btn = document.createElement('button');
+btn.innerText = 'Click Me!';
+document.body.prepend(btn);
+```
+
+<Warning>
+  **Performance Warning**: Avoid using long, synchronous loops in your content scripts. If your code takes too long to run, it could slow down the page's load time, leading to poor user experience and possible rejections.
+</Warning>
+
+<Tip>
+  If your extension's logic isn't appearing on a page, the first step is to **check the "Matches" pattern** in your `manifest.json`. If it doesn't align with the page's URL, the code will never run!
+</Tip>

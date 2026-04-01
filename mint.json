@@ -1,0 +1,119 @@
+{
+  "name": "Extensy",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#4ade80",
+    "light": "#86efac",
+    "dark": "#16a34a",
+    "background": {
+      "dark": "#0a0a0a"
+    }
+  },
+  "topbarLinks": [
+    { "name": "Support", "url": "https://discord.gg/extensy" },
+    { "name": "Start Building", "url": "https://extensy.dev" }
+  ],
+  "topbarCtaButton": {
+    "name": "Start Building",
+    "url": "https://extensy.dev"
+  },
+  "tabs": [
+    { "name": "Guides", "url": "/" },
+    { "name": "Extensions 101", "url": "/extensions-101/what-is-an-extension" },
+    { "name": "Changelog", "url": "/changelog/overview" }
+  ],
+  "anchors": [
+    {
+      "name": "Discord Community",
+      "icon": "discord",
+      "url": "https://discord.gg/extensy"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/extensy"
+    },
+    {
+      "name": "extensy.dev",
+      "icon": "globe",
+      "url": "https://extensy.dev"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": ["introduction", "quickstart", "concepts", "ai-assistant"]
+    },
+    {
+      "group": "Using Extensy",
+      "pages": [
+        "using-extensy/your-first-extension",
+        "using-extensy/prompting-guide",
+        "using-extensy/editing-and-iterating",
+        "using-extensy/downloading-your-extension",
+        "using-extensy/loading-in-browser"
+      ]
+    },
+    {
+      "group": "Publishing",
+      "pages": [
+        "publishing/overview",
+        "publishing/developer-account",
+        "publishing/prepare-assets",
+        "publishing/chrome-web-store",
+        "publishing/post-publish"
+      ]
+    },
+    {
+      "group": "Credits",
+      "pages": [
+        "credits/how-credits-work",
+        "credits/plans",
+        "credits/faq"
+      ]
+    },
+    {
+      "group": "Extensions 101",
+      "pages": [
+        "extensions-101/what-is-an-extension",
+        "extensions-101/mv3-explained",
+        "extensions-101/manifest-json",
+        "extensions-101/permissions",
+        "extensions-101/extension-types"
+      ]
+    },
+    {
+      "group": "Advanced",
+      "pages": [
+        "advanced/customizing-manifest",
+        "advanced/adding-apis",
+        "advanced/storage-and-state",
+        "advanced/content-scripts",
+        "advanced/background-service-workers",
+        "advanced/popup-vs-options"
+      ]
+    },
+    {
+      "group": "Troubleshooting",
+      "pages": [
+        "troubleshooting/common-errors",
+        "troubleshooting/cws-rejection-guide",
+        "troubleshooting/extension-not-loading"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": ["changelog/overview"]
+    }
+  ],
+  "footerSocials": {
+    "x": "https://x.com/extensydev",
+    "discord": "https://discord.gg/extensy",
+    "github": "https://github.com/extensy",
+    "ai-assistant": "/ai-assistant"
+  }
+}

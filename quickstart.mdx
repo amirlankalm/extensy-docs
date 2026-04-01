@@ -1,0 +1,65 @@
+---
+title: "Quickstart"
+description: "Build and load your first Chrome extension in under 5 minutes."
+---
+
+# Your First Extension in Under 5 Minutes
+
+Welcome to the Extensy fast track. This guide will walk you through the entire process of generating, downloading, and running your first AI-built Chrome extension.
+
+## 01. Create an Account
+
+Head over to [extensy.dev](https://extensy.dev) and sign up using your email or Google account. Once verified, you'll reach your dashboard where your journey begins.
+
+## 02. Get Your Free Credits
+
+On sign up, we automatically award you with free credits. These are enough to generate and iterate on a complete extension. 
+
+<Info>
+  Credits are only consumed on successful generation. If the builder runs into a technical error, your credit is immediately returned.
+</Info>
+
+## 03. Describe Your Extension
+
+This is the fun part. In the text box, describe exactly what you want the extension to do. 
+
+> **Example Prompt:** 
+> "Build a Chrome extension that highlights every price on a webpage in green and shows a total sum found in a floating badge in the bottom-right corner."
+
+## 04. Wait for Generation
+
+Click "Generate." Behind the scenes, Extensy's AI pipeline constructs your `manifest.json`, background service worker, any necessary content scripts, and your popup's HTML, CSS, and JS. 
+
+<Steps>
+  <Step title="Download the ZIP">
+    Once the generation is done, click the **Download ZIP** button. Save the folder to a place you can easily access (like your Desktop or Downloads).
+  </Step>
+  <Step title="Unzip the Folder">
+    Extract the ZIP file so you have a regular folder containing the extension's code.
+  </Step>
+  <Step title="Load in Chrome">
+    Open Chrome and navigate to `chrome://extensions`.
+  </Step>
+  <Step title="Enable Developer Mode">
+    Toggle the switch in the top-right corner to turn on **Developer mode**.
+  </Step>
+  <Step title="Load Unpacked">
+    Click the **Load unpacked** button and select the unzipped folder you just created.
+  </Step>
+</Steps>
+
+## 05. Test Your Extension
+
+Now, go to any webpage (e.g., [amazon.com](https://amazon.com) or [ebay.com](https://ebay.com)) and see your extension in action. If it's a content-modifier, it will automatically run. If it's a popup-tool, click the extension icon in your Chrome toolbar.
+
+<Tip>
+  If your extension isn't performing exactly how you'd like, don't worry. Head back to the Extensy dashboard, refine your prompt, and regenerate!
+</Tip>
+
+## What's Next?
+
+Ready to build something more advanced? Check out our [Prompting Guide](/using-extensy/prompting-guide) to learn how to write high-performing prompts.
+
+<Warning>
+  **Privacy Matters**: Never share your extension's ZIP publicly until you've reviewed the `manifest.json` file for the permissions requested. Extensy tries to minimize permissions, but it's always good for you to know exactly what your extension is accessing.
+</Warning>

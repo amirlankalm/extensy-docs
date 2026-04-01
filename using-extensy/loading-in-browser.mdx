@@ -1,0 +1,59 @@
+---
+title: "Loading in Chrome"
+description: "How to load and test your extension in Chrome using Developer Mode."
+---
+
+# Seeing Your Work in Action
+
+Before you publish to the world, you'll want to test your extension locally. This guide will show you how to load your generated ZIP into Google Chrome using **Developer Mode**.
+
+## Loading Your Extension
+
+Follow these steps to get your first extension up and running.
+
+<Steps>
+  <Step title="Download and Unzip Your Extension">
+    Click the **Download ZIP** from the Extensy dashboard and save the folder to your computer. Extract the ZIP file into a regular folder.
+  </Step>
+  <Step title="Open Chrome Extensions">
+    Open Chrome and navigate to `chrome://extensions` or click the puzzle icon in your toolbar and select **Manage extensions**.
+  </Step>
+  <Step title="Toggle Developer Mode">
+    In the top-right corner, find the **Developer mode** toggle and turn it on.
+  </Step>
+  <Step title="Click Load Unpacked">
+    Click the **Load unpacked** button in the top-left menu.
+  </Step>
+  <Step title="Select Your Extension Folder">
+    A file browser will appear. Select the unzipped folder containing your extension files.
+  </Step>
+</Steps>
+
+## Testing Your Extension
+
+1. **Check the Toolbar**: If your extension has a popup, find the icon in the toolbar. You may need to click the puzzle icon and pin your extension for easier access.
+2. **Open a Webpage**: If your extension interacts with content, visit a page that matches your prompt's target (e.g., [wikipedia.org](https://wikipedia.org)).
+3. **Trigger Your Action**: Click the toolbar icon or look for the injection on the page.
+
+## Reloading After Changes
+
+If you manually edit a file (`popup.js`, `manifest.json`, etc.), you don't need to re-upload. 
+
+1. Save your file changes in your code editor.
+2. Go back to `chrome://extensions`.
+3. Click the **Reload icon (↺)** on your extension's card.
+4. Refresh your current tab and test again!
+
+<Note>
+  **Important Note**: Chrome will not automatically "hot-reload" your extension. You must manually click the reload button on the extensions management page.
+</Note>
+
+## Other Chromium Browsers
+
+While these steps are centered on Chrome, you can also load your Extensy-generated extensions into other Chromium-based browsers like **Brave**, **Edge**, **Opera**, or **Vivaldi**. 
+
+Just look for the equivalent `extensions` management page and follow the same "Developer mode" and "Load unpacked" process.
+
+<Tip>
+  If your extension fails to load, check the **Errors** button on your extension's card in `chrome://extensions`. It will give you a detailed breakdown of which line or file caused the issue!
+</Tip>

@@ -1,0 +1,71 @@
+---
+title: "Background Service Workers"
+description: "Understanding MV3 service workers in Chrome extensions."
+---
+
+# The Engine in the Background: Service Workers
+
+In the modern Manifest V3 architecture, your extension's background logic lives in a **Service Worker**. This is the engine that handles events, responds to tasks, and manages data when your extension's UI is closed.
+
+## What is a Background Service Worker?
+
+A service worker is an event-driven script that runs in the background of your browser. Unlike the older Manifest V2 "background pages," service workers are **ephemeral**. Chrome terminates them when they are idle and restarts them when an event occurs.
+
+## Key Differences: Persistent vs. Ephemeral
+
+| Feature | Manifest V2 (Persistent) | Manifest V3 (Service Worker) |
+| :--- | :--- | :--- |
+| **Lifecycle** | Runs forever as long as the browser is open. | Runs only when an event stops or starts it. |
+| **DOM Access** | Has its own background HTML/DOM. | No DOM access whatsoever. |
+| **State Persistence** | Can store global variables in memory. | **Variables are lost** when the worker terminates. |
+
+## The Most Common Events
+
+Service workers "listen" for these browser-level triggers.
+
+- **`chrome.runtime.onInstalled`**: Fires the first time someone installs or updates your extension. Use it for onboarding.
+- **`chrome.runtime.onMessage`**: Listens for data sent from `popup.js` or `content.js`.
+- **`chrome.alarms.onAlarm`**: Fires when a scheduled timer (alarm) goes off.
+- **`chrome.tabs.onUpdated`**: Fires whenever local tabs change URLs or refresh.
+
+## Persistent State Gotcha
+
+Since service workers can be terminated and restarted at any time, you **cannot rely on global variables** to store data. 
+
+```javascript
+// DON'T DO THIS
+let counter = 0;
+chrome.runtime.onMessage.addListener(() => {
+    counter++; // This will reset to 0 if the worker restarts!
+});
+
+// DO THIS
+chrome.runtime.onMessage.addListener(async (message) => {
+    const { counter } = await chrome.storage.local.get('counter');
+    await chrome.storage.local.set({ counter: (counter || 0) + 1 });
+});
+```
+
+<Info>
+  **Important Note**: When your extension's UI (popup or options page) is closed, the service worker is the ONLY part of your extension that's still running.
+</Info>
+
+## No DOM Access
+
+Because service workers run in their own context, they cannot use `document.querySelector()` or `window.alert()`. If you need to touch a webpage, your service worker must send a message to a **content script**.
+
+## Debugging Service Workers
+
+To see the console logs and errors in your `background.js`:
+
+1. Go to `chrome://extensions`.
+2. Find your extension's card.
+3. Click the link next to **Inspect views: service worker**.
+
+<Warning.
+  **Performance Warning**: Service workers should stay small and fast. If yours takes too long to load or perform its task, Chrome will kill the process to save resources.
+</Warning>
+
+<Tip.
+  If your extension needs to perform a scheduled check (like checking an API every hour), use the **`chrome.alarms`** API. This will automatically wake up your service worker when the time is right!
+</Tip.

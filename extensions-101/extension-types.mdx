@@ -1,0 +1,67 @@
+---
+title: "Extension Types"
+description: "The different types of Chrome extensions and which type Extensy is best for."
+---
+
+# Many Faces of Extensions
+
+Chrome extensions are more than just toolbars. They can live in different parts of your browser depending on their purpose. Here are the most common types and how Extensy handles each.
+
+## 01. Popup Extensions
+
+The most common type. These extensions appear as an icon in your Chrome toolbar. When you click the icon, a small window (the "popup") appears.
+
+- **Best for**: Tools, utilities, dashboards, and quick actions.
+- **Example Prompt**: "Build a simple unit converter in a popup that lets me switch between miles and kilometers."
+
+## 02. Content Script Extensions
+
+These extensions run code directly inside the webpages you visit. They can modify the DOM, change the style of a page, or track elements on a site.
+
+- **Best for**: Enhancers, scrapers, UI modifiers, and ad blockers.
+- **Example Prompt**: "Build a Chrome extension that highlights every price on a webpage in green."
+
+## 03. Background Extensions
+
+These extensions run the majority of their logic silently in the background using a service worker. They don't have a UI of their own but listen for browser events.
+
+- **Best for**: Trackers, sync tools, scheduled tasks, and network monitors.
+- **Example Prompt**: "Build an extension that, in the background, checks a specific API every 10 minutes and shows a notification if there's a new post."
+
+## 04. Options Page Extensions
+
+If your extension has a lot of settings, you may want a dedicated "Options" page that opens in its own tab.
+
+- **Best for**: Highly configurable tools and advanced dashboards.
+- **Example Prompt**: "Build an extension with an options page that lets me save my name, pre-fill my email, and pick a custom color theme for my UI."
+
+## 05. Sidebar Extensions (Chrome 114+)
+
+A relatively new type of extension that lives in the Chrome "Side Panel." This UI is persistent as you navigate between tabs.
+
+- **Best for**: AI assistants, research tools, and vertical dashboards.
+- **Example Prompt**: "Build a Chrome extension with a persistent side panel that lets me save research snippets from any site."
+
+## 06. DevTools Extensions
+
+These extensions add a new panel to the Chrome Developer Tools (`Inspect` window).
+
+- **Best for**: Debugging tools, custom developer consoles, and API inspectors.
+
+<Note>
+  **Important Note**: You don't have to choose just one. Extensy can combine multiple types—like a popup that controls a content script—into a single, powerful extension based on your prompt.
+</Note>
+
+## Which One Should I Choose?
+
+| Goal | Best Extension Type |
+| :--- | :--- |
+| **Simple Utility** | Popup |
+| **Website Enhancer** | Content Script |
+| **Periodic Action** | Background (Service Worker) |
+| **Complex Settings** | Options Page |
+| **Persistent Helper** | Sidebar Panel |
+
+<Tip>
+  If you're unsure which type you need, just describe what you want the tool to do. Extensy will automatically pick the best combination of files for you!
+</Tip>

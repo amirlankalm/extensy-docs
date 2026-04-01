@@ -1,0 +1,57 @@
+---
+title: "Core Concepts"
+description: "Understand how Extensy works under the hood."
+---
+
+# Inside the Extensy Pipeline
+
+To build effectively with Extensy, it helps to understand what's happening behind the scenes. Here's a look at the architecture of your generated extensions.
+
+## The Generation Pipeline
+
+1. **User Prompt**: You describe your extension's behavior in plain English.
+2. **AI Model**: Our proprietary LLMs, trained on millions of lines of Chromium API code, analyze your prompt.
+3. **Structured Generation**: The AI generates all the necessary parts: `manifest.json`, background workers, content scripts, and popup UI.
+4. **Validation**: The code is checked for common syntax errors and Manifest V3 compliance.
+5. **ZIP Assembly**: All files are packaged into a professional ZIP, ready for download.
+
+## Manifest V3 (MV3) Compliance
+
+Every extension Extensy generates follows the latest **Manifest V3 standard**. Chrome introduced MV3 to improve security and performance across all extensions. 
+
+| Feature | Manifest V2 (Legacy) | Manifest V3 (Current) |
+| :--- | :--- | :--- |
+| **Background Logic** | Persistent background pages | Event-driven Service Workers |
+| **Network Requests** | Full `webRequest` API | Performance-safe `declarativeNetRequest` |
+| **Code Injection** | Remote code allowed | All code must be bundled in the extension |
+| **Permissions** | Large, broad permissions | Granular "Least Privilege" model |
+
+<Info>
+  Extensy handles all the complexity of MV3 service workers and declarative rules for you automatically.
+</Info>
+
+## Anatomy of an Extension
+
+When you download your ZIP, you'll generally find these files:
+
+- **manifest.json**: The "brain" of your extension. It tells Chrome your extension's name, version, and which permissions it needs.
+- **popup.html/css/js**: The small window that appears when you click the extension icon in the toolbar.
+- **content.js**: Script that runs in the context of the webpages you visit. This is used for modifying DOM elements or reading page content.
+- **background.js**: The service worker that listens for browser-level events like tab updates or messages from the popup.
+- **icons/**: A folder containing your extension's branding in various sizes (16px, 48px, 128px).
+
+## Credit System
+
+Extensy uses a credit-based system for generation.
+
+- **One Credit = One Generation**: Each time you click "Generate" and get a working ZIP, one credit is deducted.
+- **Regeneration**: If you refine your prompt and regenerate, it costs an additional credit.
+- **Successful Output Only**: If a generation fails due to a server-side error, your credit is immediately returned.
+
+## Iterative Development
+
+The best way to use Extensy is through iteration. Start with a simple prompt, download and test the extension locally, and then come back to add advanced features or fix UI bugs.
+
+<Tip>
+  Our **Prompting Guide** covers how to structure your descriptions to get the best possible results.
+</Tip>

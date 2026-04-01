@@ -1,0 +1,71 @@
+---
+title: "Customizing Your Manifest"
+description: "How to manually modify manifest.json for advanced use cases."
+---
+
+# Beyond the Prompt: Fine-Tuning Your Manifest
+
+While Extensy automatically generates the `manifest.json` for you, there are times when you'll want to manually refine it to unlock advanced Chrome features. This guide covers how to customize your extension's brain.
+
+## When to Manually Edit
+
+- **Naming & Versioning**: Changing the `name`, `version`, or `description` for a store update.
+- **Granting New Permissions**: Manually adding an API (like `bookmarks` or `history`) that wasn't previously requested.
+- **Adding Shortcuts**: Defining keyboard commands (like `Ctrl+Shift+L`) to trigger your extension.
+- **Restricting Sites**: Changing a global `<all_urls>` permission to a specific domain like `https://*.google.com/*`.
+
+## Example: Adding Keyboard Shortcuts
+
+If you want your extension's popup to open on a keyboard shortcut, add a **`commands`** block to your `manifest.json`.
+
+```json
+{
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Opens the extension popup."
+    }
+  }
+}
+```
+
+## Example: Adding an Options Page
+
+If you have a lot of user settings, we recommend adding a dedicated **`options_page`** that opens in its own Chrome tab.
+
+```json
+{
+  "options_page": "options.html"
+}
+```
+
+## Version Bumping for Updates
+
+When you're ready to push an update to the Chrome Web Store, you **must** increment the `version` field. Chrome uses semantic versioning.
+
+- `1.0.0` → Your initial launch.
+- `1.0.1` → Small bug fixes or UI tweaks.
+- `1.1.0` → New features or minor additions.
+- `2.0.0` → Major architectural changes.
+
+<Note>
+  **Important Note**: After every manual edit to `manifest.json`, you must go to `chrome://extensions` and click the **Reload icon (↺)** on your extension's card for the changes to take effect.
+</Note>
+
+## Manifest Metadata
+
+Don't forget to update your authorship metadata if you're planning to publish!
+
+- **`author`**: Your name or company name.
+- **`homepage_url`**: A link to your product's landing page or GitHub repository.
+
+<Warning>
+  **Malformed Manifests**: A single missing comma or trailing quote in your `manifest.json` will cause your extension to fail silently or throw an "unreadable" error. Always use a JSON validator (like [jsonlint.com](https://jsonlint.com)) before saving.
+</Warning>
+
+<Tip>
+  If you find yourself manually editing the manifest frequently for the same task, try refining your prompt in Extensy instead: "Generate a manifest that includes a keyboard shortcut for Shift+Alt+X."
+</Tip>

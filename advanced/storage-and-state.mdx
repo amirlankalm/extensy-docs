@@ -1,0 +1,67 @@
+---
+title: "Storage & State"
+description: "How to persist data in your Chrome extension."
+---
+
+# Remembering User Data: Storage Options
+
+A great browser extension doesn't forget its users. Whether you're saving a personal API key, tracking items on a wishlist, or remembering a user's theme preference, Extensy provides the persistent storage you need.
+
+## The Three Storage Options
+
+Chrome provides three distinct ways to store data, each with different properties.
+
+| Storage Type | Persistence | Synced Across Devices | Size Limit | Use Case |
+| :--- | :--- | :--- | :--- | :--- |
+| **`chrome.storage.local`** | **High**: Persistent until manually cleared. | No (Local to browser only). | 10MB | Caching large datasets, images, and non-sensitive info. |
+| **`chrome.storage.sync`** | **High**: Persistent until manually cleared. | Yes (If user is signed into Chrome). | 100KB | **Recommended**: Global user preferences, API keys, and small settings. |
+| **`chrome.storage.session`** | **Low**: Cleared when the browser session ends. | No. | 10MB | Temporary state or data that shouldn't persist between restarts. |
+
+## How to Set, Get, and Remove Data
+
+Extensy's AI generates the correct code for you, but here's how to interact with the API manually:
+
+```javascript
+// Setting an item
+chrome.storage.sync.set({ apiKey: 'YOUR_SECRET_KEY' }, () => {
+    console.log('Value is set to YOUR_SECRET_KEY');
+});
+
+// Getting an item
+chrome.storage.sync.get(['apiKey'], (result) => {
+    console.log('The currently saved API key is: ' + result.apiKey);
+});
+
+// Removing an item
+chrome.storage.sync.remove(['apiKey'], () => {
+    console.log('API key has been cleared.');
+});
+```
+
+## When Extensy Auto-Uses Storage
+
+Extensy will automatically implement storage logic when your prompt implies a persistent state:
+
+- "Remember the last 5 things I copied."
+- "Show a different color theme depending on what I picked in the settings."
+- "Save my API key so I don't have to enter it every time."
+
+## Syncing Data Across Devices
+
+One of the most powerful features of Chrome is **`chrome.storage.sync`**. If a user is logged into their Google account on multiple computers (Work and Home), any data saved in `sync` will automatically appear on both.
+
+<Info>
+  **Important Note**: Sync storage has a strict limit of **100KB**. This is more than enough for thousands of lines of settings but too small for large images or databases.
+</Info>
+
+## Sensitive Data & Privacy
+
+If your extension stores information about a user's browsing history or personal details, you **must** declare this in your privacy policy during the Chrome Web Store submission process.
+
+<Warning>
+  **Storage Is Not Encrypted**: While `chrome.storage` is private to your extension, it is not encrypted at rest. Do not store sensitive passwords in plain text—always use a more secure method or prompt the user for their token when needed.
+</Warning>
+
+<Tip>
+  If your extension's data grows beyond 10MB, look into **IndexedDB**, which is built into every modern browser and provides a much larger, more flexible database for your extensions.
+</Tip>

@@ -1,0 +1,68 @@
+---
+title: "Downloading Your Extension"
+description: "What's inside your generated ZIP and what each file does."
+---
+
+# Your Extension, Delivered
+
+Extensy doesn't just provide code snippets; it delivers a complete, professional package for your Chrome extension. In this guide, we'll explain exactly what's inside your downloaded ZIP.
+
+## Locate the Download Button
+
+Once your generation is complete, look for the **Download ZIP** button in the dashboard. Click it and save the package to your computer.
+
+<Info>
+  A typical Extensy-generated ZIP is extremely small (under 50KB), as it only contains the essential code and assets your extension needs.
+</Info>
+
+## Folder Structure
+
+When you unzip the package, you'll see a structure similar to this:
+
+```text
+your-extension/
+├── manifest.json       ← Extension config, permissions, entry points
+├── popup.html          ← The popup UI markup
+├── popup.css           ← Popup styling
+├── popup.js            ← Popup logic and interactions
+├── content.js          ← Script that runs on web pages
+├── background.js       ← Service worker (MV3), handles events
+└── icons/
+    ├── icon16.png
+    ├── icon48.png
+    └── icon128.png
+```
+
+## What Each File Does
+
+<AccordionGroup>
+  <Accordion title="manifest.json">
+    The "brain" of your extension. It tells Chrome your extension's name, version, and which permissions it needs. It's the most critical file for any Chrome extension.
+  </Accordion>
+  <Accordion title="popup.html, css, js">
+    These files define the small window that appears when you click the extension icon in the toolbar. They control the interface and any animations or actions that happen there.
+  </Accordion>
+  <Accordion title="content.js">
+    This script is injected into the webpages you visit. If your extension highlights text, hides ads, or modifies the page's DOM, the code lives here.
+  </Accordion>
+  <Accordion title="background.js">
+    The service worker (in Manifest V3) that runs in the background. It listens for events like your extension being installed, a tab being updated, or a message from the popup.
+  </Accordion>
+  <Accordion title="icons folder">
+    Contains the branding for your extension in 16x16, 48x48, and 128x128 pixel sizes. Extensy generates generic icons, which you can replace with your own custom designs.
+  </Accordion>
+</AccordionGroup>
+
+## Which Files Should I Edit?
+
+- **manifest.json**: If you want to change the extension's name, version number, or add/remove permissions.
+- **popup.html/css/js**: If you want to refine the look and feel of your extension's popup UI.
+- **content.js**: If you want to change how the extension interacts with a specific website or its elements.
+
+<Tip>
+  **Pro-tip**: You don't need all these files for every extension. Extensy only generates what your prompt requires. A simple popup-only tool may not have a `content.js` or `background.js` at all!
+</Tip>
+
+<Warning>
+  **Important Note**: If you edit these files manually, remember to **save a backup** before using Extensy to regenerate. A new generation will overwrite your existing ZIP if you replace it.
+</Warning>

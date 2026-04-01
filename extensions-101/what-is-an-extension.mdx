@@ -1,0 +1,50 @@
+---
+title: "What is a Chrome Extension?"
+description: "A plain-language introduction to Chrome extensions."
+---
+
+# The Browser, Reimagined
+
+Think of a Chrome extension as a power-up for your browser. It's a small software program that lives inside Google Chrome and modifies its behavior, adds new features, or interacts with the websites you visit in real-time.
+
+## What Extensions Can Do
+
+Chrome extensions have a wide range of capabilities, far beyond what a regular website can perform. 
+
+- **Modify Webpages**: Inject new elements (buttons, sidebars, badges) or hide existing ones (ads, popups).
+- **Intercept Requests**: Monitor or redirect network traffic to improve security or performance.
+- **Add Toolbar Buttons**: Provide quick access to tools and dashboards through a "popup" interface.
+- **Run in the Background**: Perform tasks like tracking price changes or checking for notifications even when you're not on a specific site.
+- **Communicate with External APIs**: Fetch data from services like OpenAI, GitHub, or your own internal company tools.
+
+## Real-World Examples
+
+You likely already use extensions every day. 
+
+- **Ad Blockers**: Scan the page's HTML for ad tags and remove them before you see them.
+- **Password Managers**: Automatically detect login fields and fill in your credentials.
+- **Grammar Checkers**: Analyze the text you type into any website and provide real-time corrections.
+- **Tab Managers**: Group and organize your open windows to save memory and time.
+
+## How Extensions Differ from Websites
+
+While extensions are built using web technologies (HTML, CSS, JavaScript), they differ from standard websites in three key ways:
+
+1. **Persistence**: Extensions are installed locally on your browser. They can run across every site you visit.
+2. **Access**: Extensions have access to specialized **Chrome APIs** (like `chrome.tabs`, `chrome.storage`, and `chrome.runtime`) that standard websites cannot touch.
+3. **Context**: Extensions can run code in the "background" (as a service worker) or "inject" code directly into another website's context.
+
+<Note>
+  **Important Note**: You don't need to be a developer to use Extensy. We handle all the architectural complexity of these moving parts for you. This section is purely for those who want to understand *what* they're building.
+</Note>
+
+## Anatomy of an Extension (Plain Language)
+
+- **The Popup**: The small UI window you see when clicking the toolbar icon.
+- **Content Scripts**: The "injected" code that actually touches the DOM of a website.
+- **The Service Worker**: The "background" engine that handles events like tab updates or notifications.
+- **The Manifest**: The configuration file that tells Chrome what the extension is and what permissions it needs.
+
+<Tip>
+  Ready to learn about the modern standard for extensions? Check out our guide on [Manifest V3](/extensions-101/mv3-explained).
+</Tip>

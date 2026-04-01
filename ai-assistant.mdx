@@ -1,0 +1,31 @@
+---
+title: "AI Assistant"
+description: "Ask any question about building Chrome extensions with Extensy."
+---
+
+import { AIAssistant } from '/snippets/AIAssistant.jsx';
+
+# Extensy Doc Assistant
+
+Have a specific question about a manifest key, a credit limit, or how to load your extension? Ask our AI assistant below. It has been trained specifically on the Extensy documentation to provide you with accurate, focused answers.
+
+<AIAssistant />
+
+## How it Works
+
+The assistant uses the **Google Gemini 1.5 Flash** model behind the scenes. It is constrained to only answer questions based on the content of these documentation pages.
+
+### Common Questions
+
+- "How do I load my extension in Chrome?"
+- "What is the difference between Background and Content scripts?"
+- "How many credits does one generation cost?"
+- "What is Manifest V3?"
+
+<Tip.
+  **Privacy Note**: Your questions are sent to Google's Gemini API for processing. Do not share sensitive personal information or private API keys in the chat box.
+</Tip.
+
+<Info.
+  **Developer Note**: This assistant is a custom React component. If you're building your own custom documentation UI on Vercel, you can reuse this logic by adding your `NEXT_PUBLIC_GEMINI_API_KEY` to your environment variables!
+</Info.

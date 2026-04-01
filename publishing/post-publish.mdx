@@ -1,0 +1,66 @@
+---
+title: "After Publishing"
+description: "How to manage, update, and grow your extension after it's live."
+---
+
+# Your Extension is Live!
+
+Congratulations, your Extensy-powered extension is now viewable by millions on the Chrome Web Store. But the journey doesn't end at launch. This guide covers how to maintain and grow your extension over time.
+
+## Promoting Your Extension
+
+Once published, you'll have a permanent public link to your store listing. Now it's time to find your audience.
+
+<CardGroup cols={3}>
+  <Card title="Reddit" icon="reddit" href="https://reddit.com/r/ChromeExtensions">
+    Post in extension communities.
+  </Card>
+  <Card title="Discord" icon="discord" href="https://discord.gg/extensy">
+    Share your creation in our #showcase channel.
+  </Card>
+  <Card title="ProductHunt" icon="product-hunt" href="https://producthunt.com">
+    Launch your extension to the broader developer community.
+  </Card>
+</CardGroup>
+
+## Monitoring Performance
+
+In the **Developer Console**, you can track your extension's health and growth.
+
+- **Installs**: See how many users have added your extension.
+- **Active Users**: Track the number of people who actually use it daily or weekly.
+- **Ratings and Reviews**: Pay attention to what your users are saying. Respond to feedback directly in the console.
+- **Crash Reports**: Identify and fix technical errors that occur in the wild.
+
+## Publishing Updates
+
+The web changes, and your extension may need to evolve. To push an update:
+
+1. **Refine and Regenerate**: Go back to Extensy, update your prompt, and download the new ZIP.
+2. **Increment Version**: Open `manifest.json` and increase the `version` number (e.g., from `1.0.0` to `1.0.1`).
+3. **Upload to Console**: Click **Upload new package** in your extension's dashboard.
+4. **Submit for Review**: Google will review your update (this is often faster than the initial submission).
+
+<Tip>
+  **Pro-tip**: Small updates involving bug fixes or UI tweaks are often approved in under 24 hours. Major permission changes may take longer.
+</Tip>
+
+## Handling User Reviews
+
+Engagement is key to store ranking.
+
+- **Be Professional**: Even if a user is frustrated, respond calmly and professionally.
+- **Ask for Details**: If a user reports a bug, ask for their browser version and which site they were on.
+- **Update Your Listing**: If you receive a common question, add the answer to your store's **Detailed Description** or **FAQ**.
+
+## Promotional Items
+
+Google occasionally allows you to buy **Promoted Items** slots in store search results. This can be effective for paid tools, but for most indie developers, organic growth through communities (Reddit/Twitter/Discord) is more sustainable.
+
+<Warning>
+  **Privacy & Data**: If you update your extension to collect new types of user data, you **must** update your privacy policy and declare the change in the developer console before submitting.
+</Warning>
+
+<Note>
+  Ready to explore more advanced features? Check out our [Advanced Guides](/advanced/customizing-manifest).
+</Note>

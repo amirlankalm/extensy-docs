@@ -1,0 +1,63 @@
+---
+title: "Common Errors"
+description: "Fixes for the most common issues when loading or running your extension."
+---
+
+# Solving Common Hurdles
+
+Building an extension is a journey, and every builder encounters a few errors along the way. Most issues in Chrome extension development are due to manifest configuration, pathing, or timing. Here are the most common errors and how to fix them.
+
+<AccordionGroup>
+  <Accordion title="Manifest file is missing or unreadable">
+    **Cause**: Usually occurs if you select the wrong folder during 'Load unpacked'. 
+    **Fix**: Make sure you select the unzipped folder that *immediately* contains the `manifest.json`. If your folder has another subfolder inside it, move the files to the root.
+  </Accordion>
+
+  <Accordion title="Could not load background script">
+    **Cause**: The path to your service worker in the manifest doesn't match the actual file name.
+    **Fix**: Ensure your `manifest.json` says `"service_worker": "background.js"` and that your file is named exactly `background.js` in the same directory.
+  </Accordion>
+
+  <Accordion title="Cannot read property of null (reading 'addEventListener')">
+    **Cause**: Your content script is trying to touch a button that hasn't loaded yet.
+    **Fix**: Use `window.onload` or a `DOMContentLoaded` event listener. Alternatively, change your `run_at` to `document_idle` in the manifest to ensure the DOM is ready.
+  </Accordion>
+
+  <Accordion title="Extension context invalidated">
+    **Cause**: You reloaded the extension in `chrome://extensions`, but the old content script is still running on the page you're testing.
+    **Fix**: Refresh the webpage you're currently visiting. This will restart the logic with the new extension code!
+  </Accordion>
+
+  <Accordion title="Content Security Policy violation">
+    **Cause**: Manifest V3 prohibits "inline" scripts (scripts inside `<script>` tags in your HTML) and using `eval()`.
+    **Fix**: Move all JavaScript code to a separate `.js` file and link to it using `<script src="popup.js"></script>`. Remove any `eval()` calls.
+  </Accordion>
+
+  <Accordion title="net::ERR_BLOCKED_BY_CLIENT">
+    **Cause**: Another extension (like an ad-blocker) is conflicting with yours or blocking your network requests.
+    **Fix**: Try disabling other extensions or loading your extension in an Incognito window where other tools are turned off.
+  </Accordion>
+
+  <Accordion title="Popup not appearing">
+    **Cause**: The `action` key in your manifest is missing the `default_popup` path, or the path points to a file that doesn't exist.
+    **Fix**: Ensure your manifest has `"default_popup": "popup.html"` and that the file is in your folder.
+  </Accordion>
+
+  <Accordion title="Unchecked runtime.lastError">
+    **Cause**: An asynchronous Chrome API (like `chrome.tabs.sendMessage`) failed but didn't have an error handler.
+    **Fix**: Add a check for `chrome.runtime.lastError` in your callback or use a `try/catch` block.
+  </Accordion>
+
+  <Accordion title="Icons missing from toolbar">
+    **Cause**: The file paths in the `icons` or `action` objects are incorrect, or the `icons` folder was not included in the ZIP.
+    **Fix**: Verify that the icon files exist and the paths in `manifest.json` match exactly (e.g., `"icons/icon128.png"`).
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+  **The Chrome Console is Your Best Friend**: If your extension isn't working, right-click the popup and select **Inspect**. This will open the Console, which will show you the exact line of code that's failing!
+</Info>
+
+<Tip>
+  If you can't solve an error manually, head back to Extensy. Paste the error message into the prompt box and ask: "I'm seeing this error message in Chrome, can you fix my extension code?"
+</Tip>

@@ -1,0 +1,66 @@
+---
+title: "Your First Extension"
+description: "A complete walkthrough of building your first extension with Extensy."
+---
+
+# Building Your First Extension
+
+You have an idea, you have the credits, now it's time to build. In this guide, we'll walk through a real-world scenario: building a custom productivity tool.
+
+## Choosing What to Build
+
+If you're not sure where to start, try one of these beginner-friendly prompts. They're designed to produce immediate, verifiable results.
+
+<AccordionGroup>
+  <Accordion title="01. Price Highlighter">
+    **Prompt**: "Build a Chrome extension that highlights every price on a webpage in green and shows a total sum found in a floating badge in the bottom-right corner."
+    **Expected Output**: An extension with a `content.js` file that scans the page for currency symbols and wraps them in a span with a green background.
+  </Accordion>
+  <Accordion title="02. Focus Timer Popup">
+    **Prompt**: "Build a simple 25-minute Pomodoro timer in a popup. It should have Start, Pause, and Reset buttons and show a notification when the time is up."
+    **Expected Output**: A `popup.html`, `popup.js`, and `popup.css` extension with logic to track time even when the popup is closed.
+  </Accordion>
+  <Accordion title="03. Dark Mode Toggle">
+    **Prompt**: "Build an extension that adds a 'Toggle Dark Mode' button to the Chrome toolbar. When clicked, it should invert the colors of the current webpage."
+    **Expected Output**: An action-based extension that uses `chrome.scripting.executeScript` to inject minimal CSS into the current tab.
+  </Accordion>
+</AccordionGroup>
+
+## Writing Your Prompt
+
+In the Extensy editor, be as specific as possible. The AI thrives on detail. 
+
+1. **State the Goal**: "I want to build an extension that..."
+2. **Define the UI**: "...with a popup that contains three buttons (Red, Blue, Green)."
+3. **Describe the Action**: "...when a button is clicked, it should change the webpage's background to that color."
+4. **Target Specific Sites**: "...this should only run on [wikipedia.org](https://wikipedia.org)."
+
+## Generating the Code
+
+Click **Generate**. You'll see a progress bar as the AI pipeline analyzes your request and builds the manifest, scripts, and styling. This typically takes 10 to 30 seconds.
+
+## Loading in Chrome
+
+Once the ZIP is downloaded and unzipped, load it into Chrome.
+
+1. Open `chrome://extensions`.
+2. Enable **Developer mode**.
+3. Click **Load unpacked** and select the extension folder.
+
+## Testing Your Extension
+
+Open a new tab and navigate to a site that your extension targets. 
+
+<Tip>
+  If your extension's behavior doesn't appear immediately, check the extension icon in your toolbar. It might be a popup-based tool that only triggers when clicked!
+</Tip>
+
+## Common First-Timer Mistakes
+
+- **Incorrect Selector**: If you prompt for a specific button but don't specify its name or ID, the AI will guess. Try providing the exact text of the button.
+- **Permissions**: If you're building an extension that calls an API but forget to tell Extensy, it might miss the necessary `host_permissions` in the manifest.
+- **Refresh Required**: Remember, after loading a new extension, you often need to refresh any existing tabs for the content scripts to take effect.
+
+<Note>
+  Ready for more? Dive into our [Prompting Guide](/using-extensy/prompting-guide) for advanced tips.
+</Note>

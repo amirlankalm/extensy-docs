@@ -1,0 +1,56 @@
+---
+title: "Chrome Extension Permissions"
+description: "A complete reference of Chrome extension permissions and when to use them."
+---
+
+# Control and Security: Permissions
+
+Before your extension can interact with the browser or specific websites, it must ask for permission. This is a core part of Chrome's security model, designed to keep users safe from malicious software. 
+
+## Two Types of Permissions
+
+There are two distinct types of permissions you'll find in your `manifest.json`.
+
+- **API Permissions**: Grant access to specialized **Chrome APIs** (e.g., `storage`, `tabs`, `bookmarks`).
+- **Host Permissions**: Grant access to specific **websites** or URLs (e.g., `https://*.google.com/*`).
+
+## Permissions Reference Table
+
+| Permission | What it enables | Risk Level | Example Use Case |
+| :--- | :--- | :--- | :--- |
+| **activeTab** | Access the current tab on user click. | Low | Screenshot tools, single-page highlighting. |
+| **storage** | Store and sync and persistent data. | Low | Saving user theme settings or login tokens. |
+| **tabs** | Access all open tabs and their URLs. | Medium | Tab managers, multi-tab trackers. |
+| **cookies** | Read or modify browser cookies. | High | Authentication helpers, session monitors. |
+| **history** | Access the user's browsing history. | High | Productivity trackers, history dashboards. |
+| **downloads** | Manage and track browser downloads. | Medium | Download managers, file auto-sorters. |
+| **notifications** | Show system-level desktop notifications. | Low | Timers, alerts, and reminders. |
+| **scripting** | Inject JavaScript or CSS into pages. | High | Ad blockers, UI theme changers. |
+
+## Host Permissions
+
+If your extension needs to work on a specific website, you must declare it as a **host permission**.
+
+- `https://*.google.com/*`: All subdomains of google.com.
+- `https://example.com/shop/*`: Only the `/shop` path of example.com.
+- `<all_urls>`: **Warning**: This grants your extension access to every website the user visits. 
+
+<Info>
+  **Important Note**: Extensy will always try to use the most restrictive host permission possible. For example, if you say "only run on Wikipedia," it will only request `https://*.wikipedia.org/*`.
+</Info>
+
+## The "Least Privilege" Principle
+
+Always request only the minimum permissions your extension needs to function. 
+
+- **User Trust**: Users are more likely to install extensions with fewer total permissions.
+- **Review Speed**: Chrome Web Store reviews are significantly faster for extensions that don't request broad permissions like `<all_urls>`.
+- **Security**: If your version is ever compromised, having fewer permissions limits the potential damage.
+
+<Tip>
+  If your extension only needs to run when the user clicks its toolbar icon, use **`activeTab`** instead of the more broad `tabs` permission. This builds high trust and simplifies the review process!
+</Tip>
+
+<Warning>
+  **Privacy & Permissions**: If you request broad permissions (like `history` or `<all_urls>`), you are **required** to have a public privacy policy for your store listing.
+</Warning>

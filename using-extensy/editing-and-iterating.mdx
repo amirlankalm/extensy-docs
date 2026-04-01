@@ -1,0 +1,75 @@
+---
+title: "Editing & Iterating"
+description: "How to refine and improve your generated extension."
+---
+
+# Refining Your Creation
+
+Building the perfect extension is an iterative process. Whether you're a non-coder using our AI or a developer fine-tuning the output, Extensy gives you two distinct paths to your goal.
+
+## The Two Paths to Perfection
+
+### 01. Re-prompting (AI-Powered)
+
+If your extension is 80% of what you wanted, the easiest way to finish is to refine your prompt and regenerate.
+
+**When to Re-prompt:**
+- You want to add a feature (e.g., "now add a clear button").
+- You want to change the UI (e.g., "make the popup blue instead of green").
+- You want to target more websites (e.g., "also run on reddit.com").
+
+**Example Refinement Prompt:**
+> "The extension I just generated highlights every price on the page. Now, also show a floating total badge in the bottom-right corner that counts the number of prices found."
+
+### 02. Manual Editing (Pro Mode)
+
+If you're comfortable with a little bit of code, you can download the ZIP, unzip it, and modify the files yourself. 
+
+**When to Edit Manually:**
+- You want to use a specific CSS property the AI missed.
+- You have your own custom logic or API keys you want to paste in.
+- You want to add your own proprietary icons or assets.
+
+## Manual Editing Workflow
+
+<Steps>
+  <Step title="Download and Unzip">
+    Click the **Download ZIP** button from the Extensy dashboard and extract the folder.
+  </Step>
+  <Step title="Open in VS Code">
+    Open the unzipped folder in your favorite code editor (like VS Code).
+  </Step>
+  <Step title="Edit the Relevant File">
+    Modify `popup.js`, `content.js`, or `manifest.json`. Save your changes.
+  </Step>
+  <Step title="Go to chrome://extensions">
+    Open Chrome and navigate to the extensions management page.
+  </Step>
+  <Step title="Reload the Extension">
+    Click the **reload icon (↺)** on your extension's card.
+  </Step>
+</Steps>
+
+## Comparing the Two Approaches
+
+| Feature | Re-prompting | Manual Editing |
+| :--- | :--- | :--- |
+| **Speed** | 10-30 seconds | Depends on your coding speed |
+| **Skill Required** | None (natural language) | Basic HTML/CSS/JS |
+| **Precision** | High (AI follows instructions) | Absolute (you control every byte) |
+| **Cost** | 1 Credit | Free |
+
+<Warning>
+  **Important Note**: If you regenerate after making manual edits, your manual changes will be overwritten in the new ZIP. We recommend making all the AI-based refinements first, then downloading for final manual polish.
+</Warning>
+
+## Tips for Better Iterations
+
+- **Be Incremental**: Don't try to add 10 features in one go. Add them one by one.
+- **Reference What You Have**: "In the extension I just built, can you make the font larger?"
+- **Test Frequently**: Load each version in Chrome and test it on real sites before moving on to the next task.
+- **Mention Errors**: If your extension has a bug, describe what's happening: "The highlights appear, but they are overlapping with the image tags."
+
+<Tip>
+  Our AI is surprisingly good at debugging its own code. If something isn't working, just tell it the error message from the browser console!
+</Tip>

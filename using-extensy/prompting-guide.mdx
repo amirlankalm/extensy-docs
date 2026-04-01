@@ -1,0 +1,88 @@
+---
+title: "Prompting Guide"
+description: "How to write prompts that generate great Chrome extensions."
+---
+
+# The Art of the Prompt
+
+Extensy is only as powerful as your prompt. In this guide, we'll cover the anatomy of a great request and show you how to structure your ideas to get the best possible extension.
+
+## The Anatomy of a Great Prompt
+
+A high-performing Extensy prompt typically follows this structure:
+
+**[Action] + [Target] + [Behavior] + [UI/Style]**
+
+- **Action**: What should it do? (Highlight, Hide, Summarize, Alert)
+- **Target**: Where should it happen? (All sites, specific URL, specific elements)
+- **Behavior**: How should it handle events? (On click, on page load, on message)
+- **UI/Style**: What should it look like? (Floating badge, popup with 3 buttons, green background)
+
+## Side-by-Side: Bad vs. Good Prompts
+
+<Tabs>
+  <Tab title="01. Highlighting Prices">
+    <CodeGroup>
+      ```text Bad
+      "Make an extension that highlights prices."
+      ```
+      ```text Good
+      "Build a Chrome extension that scans every webpage for currency symbols ($, £, €) and wraps those numbers in a span with a 'background-color: lightgreen' style. Also, show a floating badge in the bottom-right corner with the count of prices found."
+      ```
+    </CodeGroup>
+  </Tab>
+  <Tab title="02. Tab Management">
+    <CodeGroup>
+      ```text Bad
+      "Manage my tabs for me."
+      ```
+      ```text Good
+      "Build a Chrome extension with a popup that lists all open tabs in the current window. Each list item should have a button to 'Close' that tab and a 'Go to' button that activates it."
+      ```
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Prompt Templates by Category
+
+<AccordionGroup>
+  <Accordion title="Content Modifier">
+    "Build an extension that [does X, e.g., inverts colors] on [website, e.g., wikipedia.org] and shows [UI element, e.g., a 'Night Mode' toggle in the popup]."
+  </Accordion>
+  <Accordion title="Productivity Tool">
+    "Build a Chrome extension that [tracks / blocks / reminds] [target, e.g., youtube.com] and displays [in popup / badge / sidebar, e.g., the time spent today]."
+  </Accordion>
+  <Accordion title="API Integration">
+    "Build a Chrome extension that calls [API endpoint, e.g., OpenAI Chat] with [auth method, e.g., an API key from the options page] and shows the result in [a popup / injected UI, e.g., a side panel]."
+  </Accordion>
+  <Accordion title="Tab Manager">
+    "Build an extension that [groups / closes / saves] tabs [based on condition, e.g., duplicate URLs] with a [popup / keyboard shortcut, e.g., Ctrl+Shift+K] interface."
+  </Accordion>
+</AccordionGroup>
+
+## What to Include
+
+- **Website URLs**: If your extension is for a specific site, mention it by name.
+- **Visuals**: Mention colors, positions (top-left, bottom-right), and button labels.
+- **Specific Behaviors**: "Only run when I click the toolbar icon" vs. "Run automatically on page load."
+- **DOM Selectors**: If you're a developer, you can even mention CSS class names or ARIA labels if known.
+
+## What NOT to Include
+
+- **Backend Logic**: Extensy builds Chrome extensions (client-side only). It can't host databases, manage server-side accounts, or provide API keys for you.
+- **OAuth Flows**: Complex OAuth redirects that require separate server-side hosting are not supported out-of-the-box in generated code.
+- **System-Level Actions**: Chrome extensions are sandboxed. They can't delete files on your hard drive, control other apps, or access system settings.
+
+<Note>
+  **Important**: Extensy is your frontend and client-side logic engine. For database hosting and server-side logic, you'll need to provide your own API endpoints.
+</Note>
+
+## Iteration Strategy
+
+If your initial generation is 80% there, don't start from scratch. Use a refinement prompt:
+
+> "The extension I just generated highlights prices in green. Now, please add a button to the popup that lets me 'Clear Highlights' from the current page."
+
+<Tip>
+  Refinement prompts are the fastest way to build complex, multi-featured extensions.
+</Tip>

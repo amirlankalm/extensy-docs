@@ -1,0 +1,68 @@
+---
+title: "Extension Not Loading"
+description: "Why your extension might not load or behave as expected."
+---
+
+# Why Your Extension isn't Appearing
+
+You've built your extension, unzipped the folder, and went to `chrome://extensions`, but something isn't right. This guide will walk you through the diagnostic steps for an extension that won't load or run.
+
+## Full Diagnostic Checklist
+
+Follow these steps to find and fix the most common loading issues.
+
+<Steps>
+  <Step title="Check Developer Mode">
+    Navigate to `chrome://extensions` and ensure the **Developer mode** toggle in the top-right corner is **ON**.
+  </Step>
+
+  <Step title="Select the Correct Folder">
+    When you click **Load unpacked**, make sure you select the *unzipped* folder. If you choose the original ZIP file, it will not load!
+  </Step>
+
+  <Step title="Read the Errors Detail">
+    If the extension icon appears on the card but shows an **Errors** button, click it. Chrome will give you a line-by-line breakdown of the problem.
+  </Step>
+
+  <Step title="Pin the Extension Icon">
+    Sometimes extensions load correctly but are "hidden" by default. Click the puzzle icon in your toolbar and **pin** the extension so you can see it.
+  </Step>
+
+  <Step title="Verify URL Match Patterns">
+    If your extension should run on a website but isn't, check your `manifest.json`. If your `matches` pattern is `https://*.google.com/*`, it won't run on `reddit.com`.
+  </Step>
+
+  <Step title="Reload the Extension Card">
+    After making any manual change to a file, you **must** click the **Reload icon (↺)** on the extension's card in `chrome://extensions`. 
+  </Step>
+
+  <Step title="Refresh Your Current Tab">
+    If you've just loaded or reloaded your extension, any open tabs won't see the new code until you **refresh** them manually.
+  </Step>
+</Steps>
+
+## Using the Console for Better Insights
+
+If the extension loads but doesn't *do* what you want, you need to look at the logs.
+
+1. **Popup Logs**: Right-click the extension's popup and select **Inspect**. This opens the Console for all `popup.js` actions.
+2. **Background Logs**: On `chrome://extensions`, click the **service worker** link on your extension card to see background actions.
+3. **Webpage Logs**: Press `F12` on the webpage you're testing to see logs from `content.js`.
+
+<Note.
+  **Important Note**: Chrome will not automatically "hot-reload" your extension. Every file save requires a manual click of the reload (↺) button and a webpage refresh.
+</Note.
+
+## What Causes "Failed to Load" Errors?
+
+- **Broken JSON**: A missing comma or mismatched braces in `manifest.json`.
+- **Missing Files**: Your manifest mentions a file (like `icon.png`) that isn't actually in your folders.
+- **Reserved Keys**: Using older V2 keys (like `browser_action`) in a V3 manifest.
+
+<Tip.
+  If you've tried everything and it still won't load, try starting with a blank, 1-line `manifest.json` and adding files back one by one to find the culprit!
+</Tip.
+
+<Warning.
+  **Conflicting Extensions**: Ad-blockers or security extensions can sometimes block your extension's scripts from running. Try testing in an **Incognito window** with all other tools disabled.
+</Warning.

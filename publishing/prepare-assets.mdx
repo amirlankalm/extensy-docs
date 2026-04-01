@@ -1,0 +1,67 @@
+---
+title: "Prepare Store Assets"
+description: "What you need to create before submitting to the Chrome Web Store."
+---
+
+# Shine in the Store
+
+A functional extension is not enough. To attract users and build trust, your store listing needs high-quality visual and written assets. This checklist covers everything you'll need before you click **Submit**.
+
+## Checklist: Core Assets
+
+- [ ] **Extension ZIP**: Your Extensy-generated, tested, and unedited or refined ZIP package.
+- [ ] **Store Icon**: 128x128px PNG. This is the main icon users see while browsing the store.
+- [ ] **Screenshots**: At least 1 (up to 5). Dimensions should be **1280x800px** or **640x400px**.
+- [ ] **Short Description**: Max 132 characters. This is the summary shown in search results.
+- [ ] **Detailed Description**: Explain what your extension does, who it's for, and how to use it.
+- [ ] **Category**: Choose the most relevant category (e.g., Productivity, Shopping, or Developer Tools).
+- [ ] **Privacy Policy**: Required if your extension collects any user data.
+
+## Designing Your Icons
+
+Your icons represent your brand. While Extensy provides basic ones, we recommend creating a custom 128x128px icon for your store listing. 
+
+<Tip>
+  **Pro-tip**: Use your extension's icon from the `icons` folder as your store icon for consistency. If you're a developer, you can use tools like Figma or Canva to refine it.
+</Tip>
+
+## Capturing Great Screenshots
+
+Users want to see the extension in action. Take screenshots that highlight your key features.
+
+1. **Popup View**: Show the extension's popup UI clearly.
+2. **On-Page Injection**: If your extension modifies a webpage, show the "before" and "after".
+3. **Action Shots**: Show a user interacting with a button or a badge.
+
+## Writing Your Store Listing
+
+Your description should be clear, professional, and highlight the value.
+
+<AccordionGroup>
+  <Accordion title="Short Description Sample">
+    "Track prices effortlessly. This extension highlights local currency symbols and calculates the total sum on any e-commerce page automatically."
+  </Accordion>
+  <Accordion title="Detailed Description Template">
+    **What it does**: A clear 1-2 sentence overview.  
+    **Key features**: Bullet point list of your main functionality.  
+    **How to use**: Step-by-step instructions (e.g., "1. Go to any site. 2. Click the icon.").  
+    **Privacy**: State what data you access (if any) and why.
+  </Accordion>
+  <Accordion title="Privacy Policy Template (Minimal)">
+    "This extension does not collect or store any personal data. All processing is done locally on your machine. We do not use remote servers or trackers."
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+  **Note on Privacy Policies**: If your extension collects any user data (including browsing history or login tokens), you **must** provide a link to a privacy policy website.
+</Info>
+
+## Justifying Permissions
+
+For every permission requested in your `manifest.json` (like `storage` or `tabs`), you should be ready to write a one-sentence justification in the developer dashboard. 
+
+> **Example**: "Storage permission is used to save your preferred theme color across browser sessions."
+
+<Warning>
+  **Prohibited Content**: Avoid using trademarked brand names in your extension's name unless you are the owner. Instead of "Facebook Enhancer", use "Enhancer for Facebook".
+</Warning>

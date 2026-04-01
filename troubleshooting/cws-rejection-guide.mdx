@@ -1,0 +1,77 @@
+---
+title: "CWS Rejection Guide"
+description: "How to fix every common Chrome Web Store rejection reason."
+---
+
+# Overcoming Store Rejections
+
+A rejection from the Chrome Web Store (CWS) is not the end. It's simply a sign that your extension needs a few adjustments to follow Google's current policies. If you receive a rejection email, this guide will help you fix the most common issues.
+
+## Understanding the Rejection Email
+
+Google will always cite a specific **Policy** (e.g., "Permissions" or "Misleading Metadata") and provide a link to the relevant rule. Read the email carefully, as it often includes a helpful hint about where your extension failed.
+
+## Common Rejection Reasons
+
+<AccordionGroup>
+  <Accordion title="01. Misleading Metadata">
+    **Cause**: Your extension's name or description doesn't clearly state what it does, or it uses trademarked names in a confusing way.
+    **Fix**: Use a descriptive name like "Enhancer for Instagram" instead of just "Instagram". Rewrite your store description to lead with the primary feature.
+  </Accordion>
+
+  <Accordion title="02. Excessive Permissions">
+    **Cause**: Your extension's `manifest.json` requests permissions (like `history` or `<all_urls>`) that its code never actually uses.
+    **Fix**: This is the most common reason for rejection. Remove every permission that isn't essential. Use `activeTab` instead of `tabs` if possible.
+  </Accordion>
+
+  <Accordion title="03. Missing Privacy Policy">
+    **Cause**: You requested a sensitive permission (like `cookies` or `storage`) but didn't provide a link to a privacy policy in the console.
+    **Fix**: Create a simple privacy policy on your website or use a generator. Link to it in the **Privacy** tab of the Developer Console.
+  </Accordion>
+
+  <Accordion title="04. Deceptive Installation">
+    **Cause**: The extension's behavior is unexpected or was not described in the store listing.
+    **Fix**: Be transparent. If your extension changes the user's search engine or homepage, it **must** be explicitly stated in the first sentence of your description.
+  </Accordion>
+
+  <Accordion title="05. Repetitive Content">
+    **Cause**: Your extension is too similar to one already in the store, or it's a direct copy of a popular tool.
+    **Fix**: Add a unique feature or rebranding that sets your tool apart. Avoid "Ad Blockers" that don't bring anything new to the ecosystem.
+  </Accordion>
+
+  <Accordion title="06. Prohibited Functionality">
+    **Cause**: Includes ad injection, malware, or search hijacking.
+    **Fix**: Ensure your code only performs the actions described. Extensy never generates malicious code, so this usually happens if you've added poor manual refinements.
+  </Accordion>
+
+  <Accordion title="07. Insufficient Permission Justification">
+    **Cause**: In the Developer Console, you provided a vague reason (e.g., "Needed for functionality") for a major permission.
+    **Fix**: Be ultra-specific: "The storage permission is used to save the user's localized price-highlighting color across sessions."
+  </Accordion>
+
+  <Accordion title="08. Remote Code Execution">
+    **Cause**: Your extension uses `eval()` or attempts to fetch a script from a remote server.
+    **Fix**: Manifest V3 prohibits all remote code. All logic must be contained in the ZIP file you upload.
+  </Accordion>
+
+  <Accordion title="09. Inactive Extension">
+    **Cause**: You submitted a "placeholder" with no real features.
+    **Fix**: Finish building your extension. Google will not approve a "Coming Soon" or non-functional tool.
+  </Accordion>
+</AccordionGroup>
+
+<Tip.
+  **Pro-tip**: After any rejection, **increment your version number** in `manifest.json` (e.g., from `1.0.0` to `1.0.1`) before re-uploading the ZIP. Chrome will not accept an update with the same version number as your previous submission.
+</Tip.
+
+## How to Appeal a Rejection
+
+If you believe your extension was rejected in error, you can reply directly to the rejection email. Be polite, cite the policy, and explain how your extension follows the rules.
+
+<Warning.
+  **Important Note**: Once a rejection is received, do not simply resubmit the same ZIP. Google's review queue is automated—resubmitting without changes will lead to an immediate second rejection or, in some cases, a developer account suspension!
+</Warning.
+
+<Note.
+  If you're unsure how to fix a cited rejection, search for the policy name in our [Discord community](https://discord.gg/extensy). Our users have seen—and solved—every rejection type imaginable!
+</Note.
