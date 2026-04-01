@@ -28,7 +28,7 @@ STRICT CONSTRAINTS:
     if (!input.trim() || loading) return;
 
     const userMessage: Message = { role: 'user', content: input };
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev: Message[]) => [...prev, userMessage]);
     setInput('');
     setLoading(true);
 
@@ -52,9 +52,9 @@ STRICT CONSTRAINTS:
       const data = await response.json();
       const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I encountered an error processing your request.";
       
-      setMessages(prev => [...prev, { role: 'assistant', content: aiText }]);
+      setMessages((prev: Message[]) => [...prev, { role: 'assistant', content: aiText }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Error: Unable to connect to the AI service." }]);
+      setMessages((prev: Message[]) => [...prev, { role: 'assistant', content: "Error: Unable to connect to the AI service." }]);
     } finally {
       setLoading(false);
     }
@@ -77,7 +77,7 @@ STRICT CONSTRAINTS:
       fontFamily: 'Inter, sans-serif'
     }}>
       <div style={{ height: '300px', overflowY: 'auto', marginBottom: '15px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        {messages.map((msg, i) => (
+        {messages.map((msg: Message, i: number) => (
           <div key={i} style={{ 
             alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
             background: msg.role === 'user' ? '#16a34a' : '#222',
@@ -97,7 +97,7 @@ STRICT CONSTRAINTS:
         <input 
           type="text" 
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
           onKeyDown={handleKeyPress}
           placeholder="Ask a question..."
           style={{ 
