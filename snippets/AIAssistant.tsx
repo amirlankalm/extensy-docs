@@ -1,5 +1,5 @@
-/// <reference types="react" />
 /// <reference types="node" />
+import type React from 'react';
 
 /**
  * AIAssistant - A custom chat component for Extensy Documentation.
@@ -11,11 +11,11 @@ interface Message {
 }
 
 export const AIAssistant: React.FC = () => {
-  const [input, setInput] = useState<string>('');
-  const [messages, setMessages] = useState<Message[]>([
+  const [input, setInput] = React.useState<string>('');
+  const [messages, setMessages] = React.useState<Message[]>([
     { role: 'assistant', content: "Hello! I'm the Extensy Doc Assistant. How can I help you today?" }
   ]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const SYSTEM_PROMPT = `You are the official Extensy AI Assistant. Your goal is to help users build and publish Chrome extensions using the Extensy platform.
 
@@ -61,7 +61,7 @@ STRICT CONSTRAINTS:
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
       sendMessage();
     }
