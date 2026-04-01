@@ -1,0 +1,13 @@
+{
+  "name": "extensy-docs",
+  "version": "1.0.0",
+  "description": "Official documentation for Extensy built with Mintlify.",
+  "scripts": {
+    "dev": "npx mintlify dev",
+    "build": "npx mintlify build",
+    "start": "npx mintlify start"
+  },
+  "dependencies": {
+    "mintlify": "latest"
+  }
+}

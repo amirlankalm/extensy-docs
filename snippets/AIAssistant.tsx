@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 
 /**
  * AIAssistant - A custom chat component for Extensy Documentation.
  * Uses Google Gemini API (Flash 1.5) to answer questions based on docs.
  */
-export const AIAssistant = () => {
-  const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+export const AIAssistant: React.FC = () => {
+  const [input, setInput] = useState<string>('');
+  const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: "Hello! I'm the Extensy Doc Assistant. How can I help you today?" }
   ]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const SYSTEM_PROMPT = `You are the official Extensy AI Assistant. Your goal is to help users build and publish Chrome extensions using the Extensy platform.
 
@@ -19,10 +24,10 @@ STRICT CONSTRAINTS:
 3. Do not provide code for other frameworks or general programming tips not related to Extensy.
 4. Keep answers concise and developer-focused.`;
 
-  const sendMessage = async () => {
+  const sendMessage = async (): Promise<void> => {
     if (!input.trim() || loading) return;
 
-    const userMessage = { role: 'user', content: input };
+    const userMessage: Message = { role: 'user', content: input };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setLoading(true);
@@ -52,6 +57,12 @@ STRICT CONSTRAINTS:
       setMessages(prev => [...prev, { role: 'assistant', content: "Error: Unable to connect to the AI service." }]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      sendMessage();
     }
   };
 
@@ -87,7 +98,7 @@ STRICT CONSTRAINTS:
           type="text" 
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+          onKeyDown={handleKeyPress}
           placeholder="Ask a question..."
           style={{ 
             flex: 1, 
