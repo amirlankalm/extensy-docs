@@ -1,3 +1,5 @@
+/// <reference types="react" />
+/// <reference types="node" />
 import React, { useState, KeyboardEvent } from 'react';
 
 /**
