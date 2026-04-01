@@ -75,17 +75,17 @@ STRICT CONSTRAINTS:
       padding: '20px', 
       background: '#0a0a0a',
       color: '#fff',
-      marginTop: '20px',
+      marginTop: '24px',
       fontFamily: 'Inter, sans-serif'
     }}>
-      <div style={{ height: '300px', overflowY: 'auto', marginBottom: '15px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div style={{ height: '350px', overflowY: 'auto', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
         {messages.map((msg: Message, i: number) => (
           <div key={i} style={{ 
             alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-            background: msg.role === 'user' ? '#16a34a' : '#222',
-            padding: '10px 14px',
+            background: msg.role === 'user' ? '#60A5FA' : '#1f2937',
+            padding: '12px 16px',
             borderRadius: '16px',
-            maxWidth: '80%',
+            maxWidth: '85%',
             fontSize: '14px',
             lineHeight: '1.4'
           }}>
@@ -116,7 +116,7 @@ STRICT CONSTRAINTS:
           onClick={sendMessage}
           disabled={loading}
           style={{ 
-            background: '#4ade80', 
+            background: '#60A5FA', 
             color: '#000', 
             border: 'none', 
             padding: '10px 20px', 

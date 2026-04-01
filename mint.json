@@ -6,16 +6,15 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#4ade80",
-    "light": "#86efac",
-    "dark": "#16a34a",
-    "background": {
-      "dark": "#0a0a0a"
-    }
+    "primary": "#60A5FA",
+    "light": "#60A5FA",
+    "dark": "#60A5FA"
   },
   "topbarLinks": [
-    { "name": "Support", "url": "https://discord.gg/extensy" },
-    { "name": "Start Building", "url": "https://extensy.dev" }
+    {
+      "name": "extensy.dev",
+      "url": "https://extensy.dev"
+    }
   ],
   "topbarCtaButton": {
     "name": "Start Building",
