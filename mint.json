@@ -110,9 +110,7 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/extensydev",
-    "discord": "https://discord.gg/extensy",
-    "github": "https://github.com/extensy",
-    "ai-assistant": "/ai-assistant"
+    "x": "https://x.com/extensy",
+    "discord": "https://discord.gg/extensy"
   }
 }

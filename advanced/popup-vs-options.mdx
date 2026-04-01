@@ -1,68 +1,12 @@
 ---
-title: "Popup vs Options Page"
-description: "When to use a popup vs. a full options page."
+title: "Popup vs. Options"
+description: "Choosing the right UI for your extension."
 ---
 
-# UI Design for Extensions: Choosing the Right Home
+# UI Architecture
 
-Chrome extensions have two primary places to display instructions and settings to a user: the **Popup** and the **Options Page**. Each has a distinct purpose and user experience.
+Choose a **Popup** (defined in `action`) for quick actions while the user is browsing, and an **Options** page for static settings and bulk configuration.
 
-## The Choosing Factor: Screen Real Estate & Persistence
-
-| UI Type | Purpose | Max Size | Persistence |
-| :--- | :--- | :--- | :--- |
-| **Popup** (`default_popup`) | Quick actions, status displays, and toggle buttons. | 600px x 600px | **Low**: Closes if the user clicks anywhere else in the browser. |
-| **Options Page** (`options_page`) | Major settings, complex configuration, and long-form data. | Unlimited (Full browser tab) | **High**: Remains open as a standard browser tab. |
-
-## 01. The Popup: For Speed and Immediacy
-
-The popup is the small window that appears when you click the extension's icon in your toolbar. It's built using `popup.html`, `popup.css`, and `popup.js`.
-
-- **Best for**: 
-    - Activating a "Dark Mode" toggle.
-    - Starting a Pomodoro timer.
-    - Showing a quick summary of the current page's price.
-    - Entering a quick API key.
-
-<Tip.
-  **Pro-tip**: Think of the popup as a "remote control" for your extension. It should be simple, focused, and fast!
-</Tip.
-
-## 02. The Options Page: For Complexity
-
-If your extension has more than 4 or 5 settings, or if it requires a large input field (like a long list of blocked domains), we recommend a dedicated **Options Page**.
-
-- **Best for**: 
-    - Managing a long list of excluded websites.
-    - Viewing a dashboard of your extension's history.
-    - Configuring complex OAuth login flows.
-    - Detailed instructions or documentation.
-
-## How to Prompt for Each in Extensy
-
-If you want a specific UI, just say so in your prompt:
-
-- **For a Popup**: "Build an extension with a popup that has a 'Save' button."
-- **For an Options Page**: "Build an extension that opens a full options page where I can manage my settings."
-- **For Both**: "Build an extension with a popup for quick captures and an options page for long-term history."
-
-## Implementation in manifest.json
-
-Extensy will automatically generate the correct code, but here's where these keys live in your `manifest.json`:
-
-```json
-{
-  "action": {
-    "default_popup": "popup.html"
-  },
-  "options_page": "options.html"
-}
-```
-
-<Warning.
-  **Design Warning**: Don't cram everything into your popup. If a user has to scroll significantly or click through multiple menus in a 400px window, it's a sign that you need an Options page instead.
-</Warning.
-
-<Note.
-  In newer versions of Chrome (v114+), you can also use a **Side Panel** (`side_panel`). This provides a persistent UI that stays open as you move between different tabs!
-</Note.
+<Tip>
+  You can use the same CSS and components across both pages to keep your branding consistent.
+</Tip>

@@ -1,6 +1,5 @@
 /// <reference types="react" />
 /// <reference types="node" />
-import React, { useState, KeyboardEvent } from 'react';
 
 /**
  * AIAssistant - A custom chat component for Extensy Documentation.

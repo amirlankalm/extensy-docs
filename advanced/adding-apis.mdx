@@ -1,74 +1,17 @@
 ---
-title: "Adding External APIs"
-description: "How to call external APIs from your Chrome extension."
+title: "Adding APIs"
+description: "How to integrate external APIs into your browser extension."
 ---
 
-# Building Smart Extensions: API Integrations
+# Advanced API Integration
 
-The most powerful extensions are those that connect to external intelligence. Whether you're calling OpenAI for text summarization or fetching data from a custom company endpoint, Extensy provides the architecture to manage API calls securely.
+Extensions built with Extensy can interact with almost any public API. 
 
-## How to Prompt for API Integration
+## Best Practices
 
-The easiest way to add an API is to include it in your initial prompt or a refinement:
+1. Use `fetch` in your background service worker for cross-origin requests.
+2. Store your API keys securely (e.g., using `chrome.storage.local` or environment variables).
 
-> **Example Prompt**: "Build a Chrome extension that calls the OpenAI GPT-4o API with my key. When I select text on a page, it should show a 'Summarize' button in the popup."
-
-## Fetching Data in Manifest V3
-
-In Manifest V3, API calls are handled differently depending on where they're made.
-
-<CardGroup cols={2}>
-  <Card title="Content Script Context" icon="code">
-    Runs in the webpage's context. CORS rules for the target website apply. Useful for simple, public data.
-  </Card>
-  <Card title="Background Context" icon="gears">
-    Runs in the extension's service worker context. CORS rules are often bypassed. **This is the recommended place for API calls.**
-  </Card>
-</CardGroup>
-
-## Architecture Recommendation
-
-For any sensitive API integration (like OpenAI or internal servers), we recommend this flow:
-
-1. **Popup/Content Script**: Triggers an event (e.g., button click).
-2. **Message Passing**: Sends a message to `background.js` with `chrome.runtime.sendMessage()`.
-3. **Background Service Worker**: Receives the message, makes the `fetch()` call to the API using your secure key, and receives the response.
-4. **Return Message**: Sends the data back to the popup or content script for display.
-
-## Storing Your API Keys
-
-**Never hardcode your API key directly in `content.js`.** Content scripts are visible in the browser's developer console to any user. 
-
-Instead, use **`chrome.storage.local`** to store the key. Users can input their key on an Options page or directly in the Popup.
-
-```javascript
-// Example: Saving an API key from the popup
-chrome.storage.local.set({ openAiKey: userInputValue }, () => {
-  console.log('Secret key saved securely.');
-});
-```
-
-## Example: OpenAI Integration Architecture
-
-<Steps>
-  <Step title="Describe Your Prompt">
-    "Build a Chrome extension that uses the OpenAI API to summarize the text I select on a page."
-  </Step>
-  <Step title="Extensy Generation">
-    Extensy will generate a `background.js` with the `fetch()` logic and a `content.js` to handle the selection.
-  </Step>
-  <Step title="Enter Your Key">
-    After loading the extension, use the provided UI (usually in the popup or options) to save your OpenAI API key.
-  </Step>
-  <Step title="Test and Execute">
-    The extension will now use your key to fetch summaries from OpenAI's servers.
-  </Step>
-</Steps>
-
-<Warning>
-  **Security Warning**: Be extremely careful with API keys. If you publish an extension to the Chrome Web Store with a hardcoded secret key, it may be extracted by others. Always use a dynamic input field and store the key in `chrome.storage`.
-</Warning>
-
-<Tip>
-  If you're building a tool for a large group of users, consider building a small backend proxy server to handle the API keys, rather than giving each user their own individual secret.
-</Tip>
+<Note>
+  Direct API calls from `content.js` may be blocked by a website's Content Security Policy (CSP).
+</Note>

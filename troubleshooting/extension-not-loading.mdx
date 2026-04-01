@@ -49,9 +49,9 @@ If the extension loads but doesn't *do* what you want, you need to look at the l
 2. **Background Logs**: On `chrome://extensions`, click the **service worker** link on your extension card to see background actions.
 3. **Webpage Logs**: Press `F12` on the webpage you're testing to see logs from `content.js`.
 
-<Note.
+<Note>
   **Important Note**: Chrome will not automatically "hot-reload" your extension. Every file save requires a manual click of the reload (↺) button and a webpage refresh.
-</Note.
+</Note>
 
 ## What Causes "Failed to Load" Errors?
 
@@ -59,10 +59,10 @@ If the extension loads but doesn't *do* what you want, you need to look at the l
 - **Missing Files**: Your manifest mentions a file (like `icon.png`) that isn't actually in your folders.
 - **Reserved Keys**: Using older V2 keys (like `browser_action`) in a V3 manifest.
 
-<Tip.
+<Tip>
   If you've tried everything and it still won't load, try starting with a blank, 1-line `manifest.json` and adding files back one by one to find the culprit!
-</Tip.
+</Tip>
 
-<Warning.
+<Warning>
   **Conflicting Extensions**: Ad-blockers or security extensions can sometimes block your extension's scripts from running. Try testing in an **Incognito window** with all other tools disabled.
-</Warning.
+</Warning>
