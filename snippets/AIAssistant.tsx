@@ -1,3 +1,8 @@
+import type * as ReactNamespace from 'react';
+
+// Mintlify handles React globally, but we need this for IDE type safety.
+const React = (globalThis as any).React as typeof ReactNamespace;
+
 /**
  * AIAssistant - A custom chat component for Extensy Documentation.
  * Uses Google Gemini API (Flash 1.5) to answer questions based on docs.
@@ -49,7 +54,7 @@ STRICT CONSTRAINTS:
       const data = await response.json();
       const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I encountered an error processing your request.";
       
-      setMessages((prev: Message[]) => [...prev, { role: 'assistant', content: aiText }]);
+      setMessages((prevValue: Message[]) => [...prevValue, { role: 'assistant', content: aiText }]);
     } catch (error) {
       setMessages((prevValue: Message[]) => [...prevValue, { role: 'assistant', content: "Error: Unable to connect to the AI service." }]);
     } finally {
