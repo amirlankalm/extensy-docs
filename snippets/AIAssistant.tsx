@@ -1,11 +1,12 @@
-import type { FC, KeyboardEvent, ChangeEvent, useState as useStateType } from 'react';
+import type { FC, KeyboardEvent, ChangeEvent } from 'react';
+
+// Mintlify provides React hooks globally at runtime.
+// We declare them here so TypeScript knows about them.
+declare const useState: <T>(init: T) => [T, (v: T | ((prev: T) => T)) => void];
 
 /**
  * AIAssistant - A custom chat component for Extensy Documentation.
  * Uses Google Gemini API (Flash 1.5) to answer questions based on docs.
- * 
- * Technical Note: We use 'import type' and explicit global access for React
- * to satisfy both your IDE and Mintlify's build constraints.
  */
 interface Message {
   role: 'user' | 'assistant';
@@ -13,9 +14,6 @@ interface Message {
 }
 
 export const AIAssistant: FC = () => {
-  // Access global React provided by Mintlify, typed by our import
-  const useState = (globalThis as any).React.useState as typeof useStateType;
-  
   const [input, setInput] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: "Hello! I'm the Extensy Doc Assistant. How can I help you today?" }
