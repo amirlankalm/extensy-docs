@@ -4,8 +4,7 @@
   "description": "Official documentation for Extensy built with Mintlify.",
   "scripts": {
     "dev": "mintlify dev",
-    "build": "mintlify validate",
-    "export": "mintlify export",
+    "build": "mintlify export --output export.zip && mkdir -p out && cd out && unzip -o ../export.zip && cd ..",
     "start": "mintlify dev"
   },
   "dependencies": {
