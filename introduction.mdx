@@ -1,75 +1,47 @@
 ---
 title: "Introduction"
-description: "Everything you need to build, edit, and publish Chrome extensions with AI."
+description: "Welcome to the Extensy developer documentation."
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-preview.png"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-preview.png"
-  alt="Hero Dark"
-/>
+# Welcome to Extensy
 
-## Getting Started
-
-The first step to building with Extensy is understanding how to communicate your ideas effectively to the AI.
+Extensy is the first documentation-first AI platform for building production-grade Chrome extensions. Our mission is to democratize browser extension development by providing the tools, templates, and AI-driven guidance you need to go from idea to the Chrome Web Store.
 
 <CardGroup cols={2}>
-  <Card
-    title="Quickstart"
-    icon="bolt"
-    href="/quickstart"
-  >
-    Get your first extension up and running in less than 2 minutes.
+  <Card title="Quickstart Guide" icon="bolt" href="/quickstart">
+    Learn how to build and load your first extension in under 5 minutes.
   </Card>
-  <Card
-    title="Prompting Guide"
-    icon="pen-to-square"
-    href="/using-extensy/prompting-guide"
-  >
-    Learn how to write prompts that result in production-ready code.
+  <Card title="AI Assistant" icon="robot" href="/ai-assistant">
+    Ask our specialized assistant any questions about extension manifest or code.
+  </Card>
+  <Card title="Extension Concepts" icon="book-sparkles" href="/concepts">
+    Understand the architecture of Manifest V3, content scripts, and service workers.
+  </Card>
+  <Card title="Publishing Guide" icon="shop" href="/publishing/overview">
+    A step-by-step walkthrough for submitting your extension to the Web Store.
   </Card>
 </CardGroup>
 
-## Deep Dive
+## Why Build with Extensy?
 
-Explore the technical foundations and advanced features of the Extensy pipeline.
+We provide a streamlined workflow that eliminates the typical friction of extension development:
 
-<CardGroup cols={2}>
-  <Card
-    title="Manifest V3"
-    icon="file-code"
-    href="/extensions-101/mv3-explained"
-  >
-    Understand the modern Chrome extension architecture.
+<CardGroup cols={3}>
+  <Card title="MV3 by Default" icon="shield-check">
+    Automatic generation of secure, Manifest V3-compliant code.
   </Card>
-  <Card
-    title="AI Assistant"
-    icon="robot"
-    href="/ai-assistant"
-  >
-    Chat with our doc bot to solve specific extension building problems.
+  <Card title="One-Click Export" icon="file-export">
+    Download your source code, ready for local loading or store submission.
   </Card>
-  <Card
-    title="Publishing"
-    icon="store"
-    href="/publishing/overview"
-  >
-    The complete guide to the Chrome Web Store submission process.
-  </Card>
-  <Card
-    title="Changelog"
-    icon="clock-rotate-left"
-    href="/changelog/overview"
-  >
-    See what's new in the latest version of Extensy.
+  <Card title="Instant Debugging" icon="bug">
+    Context-aware troubleshooting for common permission and loading errors.
   </Card>
 </CardGroup>
 
-import { AIAssistant } from '/snippets/AIAssistant.tsx';
+## Join the Community
 
-<AIAssistant />
+Extensy is built by and for extension developers. If you have questions or want to show off what you've built, join us on Discord.
+
+<Card title="Discord Community" icon="discord" href="https://discord.gg/extensy">
+  Connect with hundreds of other developers building the future of the browser.
+</Card>

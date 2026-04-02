@@ -1,6 +1,3 @@
-/// <reference types="node" />
-import type React from 'react';
-
 /**
  * AIAssistant - A custom chat component for Extensy Documentation.
  * Uses Google Gemini API (Flash 1.5) to answer questions based on docs.
@@ -34,7 +31,6 @@ STRICT CONSTRAINTS:
     setLoading(true);
 
     try {
-      // Note: In production, process.env.NEXT_PUBLIC_GEMINI_API_KEY should be set in Vercel.
       const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || 'AIzaSyDjGguUO9yr8QaMSLwyB8C3UZO2RJjSLDQ';
       
       const response = await fetch(
@@ -55,7 +51,7 @@ STRICT CONSTRAINTS:
       
       setMessages((prev: Message[]) => [...prev, { role: 'assistant', content: aiText }]);
     } catch (error) {
-      setMessages((prev: Message[]) => [...prev, { role: 'assistant', content: "Error: Unable to connect to the AI service." }]);
+      setMessages((prevValue: Message[]) => [...prevValue, { role: 'assistant', content: "Error: Unable to connect to the AI service." }]);
     } finally {
       setLoading(false);
     }
@@ -69,11 +65,11 @@ STRICT CONSTRAINTS:
 
   return (
     <div style={{ 
-      border: '1px solid #333', 
-      borderRadius: '12px', 
+      border: '1px solid #334155', 
+      borderRadius: '8px', 
       padding: '20px', 
-      background: '#0a0a0a',
-      color: '#fff',
+      background: '#0f172a',
+      color: '#f8fafc',
       marginTop: '24px',
       fontFamily: 'Inter, sans-serif'
     }}>
@@ -81,9 +77,10 @@ STRICT CONSTRAINTS:
         {messages.map((msg: Message, i: number) => (
           <div key={i} style={{ 
             alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-            background: msg.role === 'user' ? '#60A5FA' : '#1f2937',
-            padding: '12px 16px',
-            borderRadius: '16px',
+            background: msg.role === 'user' ? '#10B981' : '#1e293b',
+            color: msg.role === 'user' ? '#000' : '#f8fafc',
+            padding: '10px 14px',
+            borderRadius: '12px',
             maxWidth: '85%',
             fontSize: '14px',
             lineHeight: '1.4'
@@ -91,10 +88,10 @@ STRICT CONSTRAINTS:
             {msg.content}
           </div>
         ))}
-        {loading && <div style={{ color: '#888', fontStyle: 'italic', fontSize: '13px' }}>AI is thinking...</div>}
+        {loading && <div style={{ color: '#94a3b8', fontStyle: 'italic', fontSize: '13px' }}>AI is thinking...</div>}
       </div>
       
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ display: 'flex', gap: '8px' }}>
         <input 
           type="text" 
           value={input}
@@ -103,24 +100,25 @@ STRICT CONSTRAINTS:
           placeholder="Ask a question..."
           style={{ 
             flex: 1, 
-            background: '#1a1a1a', 
-            border: '1px solid #444', 
+            background: '#1e293b', 
+            border: '1px solid #334155', 
             color: '#fff', 
-            padding: '10px 15px', 
-            borderRadius: '8px',
-            outline: 'none'
+            padding: '10px 14px', 
+            borderRadius: '6px',
+            outline: 'none',
+            fontSize: '14px'
           }}
         />
         <button 
           onClick={sendMessage}
           disabled={loading}
           style={{ 
-            background: '#60A5FA', 
+            background: '#10B981', 
             color: '#000', 
             border: 'none', 
-            padding: '10px 20px', 
-            borderRadius: '8px', 
-            fontWeight: 'bold',
+            padding: '10px 16px', 
+            borderRadius: '6px', 
+            fontWeight: '600',
             cursor: loading ? 'not-allowed' : 'pointer'
           }}
         >
