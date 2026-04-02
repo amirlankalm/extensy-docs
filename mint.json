@@ -29,12 +29,7 @@
     {
       "name": "Discord Community",
       "icon": "discord",
-      "url": "https://discord.gg/extensy"
-    },
-    {
-      "name": "GitHub",
-      "icon": "github",
-      "url": "https://github.com/extensy"
+      "url": "https://discord.gg/HB6DZYws"
     },
     {
       "name": "extensy.dev",
@@ -111,6 +106,6 @@
   ],
   "footerSocials": {
     "x": "https://x.com/extensy",
-    "discord": "https://discord.gg/extensy"
+    "discord": "https://discord.gg/HB6DZYws"
   }
 }
