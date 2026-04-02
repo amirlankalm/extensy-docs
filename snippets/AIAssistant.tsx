@@ -1,23 +1,26 @@
-import type * as ReactNamespace from 'react';
-
-// Mintlify handles React globally, but we need this for IDE type safety.
-const React = (globalThis as any).React as typeof ReactNamespace;
+import type { FC, KeyboardEvent, ChangeEvent, useState as useStateType } from 'react';
 
 /**
  * AIAssistant - A custom chat component for Extensy Documentation.
  * Uses Google Gemini API (Flash 1.5) to answer questions based on docs.
+ * 
+ * Technical Note: We use 'import type' and explicit global access for React
+ * to satisfy both your IDE and Mintlify's build constraints.
  */
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
 
-export const AIAssistant: React.FC = () => {
-  const [input, setInput] = React.useState<string>('');
-  const [messages, setMessages] = React.useState<Message[]>([
+export const AIAssistant: FC = () => {
+  // Access global React provided by Mintlify, typed by our import
+  const useState = (globalThis as any).React.useState as typeof useStateType;
+  
+  const [input, setInput] = useState<string>('');
+  const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: "Hello! I'm the Extensy Doc Assistant. How can I help you today?" }
   ]);
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const SYSTEM_PROMPT = `You are the official Extensy AI Assistant. Your goal is to help users build and publish Chrome extensions using the Extensy platform.
 
@@ -54,7 +57,7 @@ STRICT CONSTRAINTS:
       const data = await response.json();
       const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I encountered an error processing your request.";
       
-      setMessages((prevValue: Message[]) => [...prevValue, { role: 'assistant', content: aiText }]);
+      setMessages((prev: Message[]) => [...prev, { role: 'assistant', content: aiText }]);
     } catch (error) {
       setMessages((prevValue: Message[]) => [...prevValue, { role: 'assistant', content: "Error: Unable to connect to the AI service." }]);
     } finally {
@@ -62,7 +65,7 @@ STRICT CONSTRAINTS:
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
       sendMessage();
     }
@@ -100,7 +103,7 @@ STRICT CONSTRAINTS:
         <input 
           type="text" 
           value={input}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
           onKeyDown={handleKeyPress}
           placeholder="Ask a question..."
           style={{ 
