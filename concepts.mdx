@@ -9,11 +9,16 @@ To build effectively with Extensy, it helps to understand what's happening behin
 
 ## The Generation Pipeline
 
-1. **User Prompt**: You describe your extension's behavior in plain English.
-2. **AI Model**: Our proprietary LLMs, trained on millions of lines of Chromium API code, analyze your prompt.
-3. **Structured Generation**: The AI generates all the necessary parts: `manifest.json`, background workers, content scripts, and popup UI.
-4. **Validation**: The code is checked for common syntax errors and Manifest V3 compliance.
-5. **ZIP Assembly**: All files are packaged into a professional ZIP, ready for download.
+Behind the scenes, Extensy is powered by the **Sidekick Engine**, an autonomous workflow built on top of LangGraph. It orchestrates multiple specialized AI nodes to automatically generate, style, test, and package your extension.
+
+1. **Initial Router**: Determines the generation path based on your subscription tier.
+2. **Architect Node (Pro/Max)**: Extracts a structured blueprint (permissions, features) from your raw prompt using advanced models like `claude-sonnet-4-5`.
+3. **Researcher Node (Max)**: Augments context by retrieving high-quality Chrome MV3 patterns from the Nia API.
+4. **Coder Node**: The heavy lifter. It writes the `manifest.json`, background workers, content scripts, and core logic.
+5. **UI Designer Node (Pro/Max)**: Refines the generated HTML/CSS/JS files, injecting modern aesthetics.
+6. **QA Node (Pro/Max)**: Launches a headless Playwright Chromium instance, loads the unpacked extension, and captures any console errors or crashes, seamlessly sending them back to the Coder for refinement.
+7. **Legal & Integration**: For higher tiers, Sidekick generates a standard Terms of Service document and injects third-party APIs.
+8. **Assembler Node**: Packages the finalized source code into a professional ZIP, ready for the Chrome Web Store.
 
 ## Manifest V3 (MV3) Compliance
 
@@ -40,13 +45,13 @@ When you download your ZIP, you'll generally find these files:
 - **background.js**: The service worker that listens for browser-level events like tab updates or messages from the popup.
 - **icons/**: A folder containing your extension's branding in various sizes (16px, 48px, 128px).
 
-## Credit System
+## Subscription Tiers & Billing
 
-Extensy uses a credit-based system for generation.
+Extensy uses **Polar** for secure, transparent subscription management. Depending on your tier, the backend routes to different functionality and LLMs.
 
-- **One Credit = One Generation**: Each time you click "Generate" and get a working ZIP, one credit is deducted.
-- **Regeneration**: If you refine your prompt and regenerate, it costs an additional credit.
-- **Successful Output Only**: If a generation fails due to a server-side error, your credit is immediately returned.
+- **Free Tier**: Powered by `claude-haiku-4-5`. Uses the bare-bones Coder and Assembler nodes to generate simple extensions instantly.
+- **Pro Tier**: Powered by `claude-sonnet-4-5`. Activates the Architect for upfront planning, UI Designer for premium aesthetics, Playwright QA for built-in testing, and automatic Legal/TOS generation.
+- **Max Tier**: Gets all Pro features plus iterative advanced research (via the Nia API) and external 3rd-party integration wiring.
 
 ## Iterative Development
 
