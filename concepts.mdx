@@ -12,12 +12,12 @@ To build effectively with Extensy, it helps to understand what's happening behin
 Behind the scenes, Extensy is powered by the **Sidekick Engine**, an autonomous workflow built on top of LangGraph. It orchestrates multiple specialized AI nodes to automatically generate, style, test, and package your extension.
 
 1. **Initial Router**: Determines the generation path based on your subscription tier.
-2. **Architect Node (Pro/Max)**: Extracts a structured blueprint (permissions, features) from your raw prompt using advanced models like `claude-sonnet-4-5`.
-3. **Researcher Node (Max)**: Augments context by retrieving high-quality Chrome MV3 patterns from the Nia API.
-4. **Coder Node**: The heavy lifter. It writes the `manifest.json`, background workers, content scripts, and core logic.
-5. **UI Designer Node (Pro/Max)**: Refines the generated HTML/CSS/JS files, injecting modern aesthetics.
+2. **Architect Node (Pro/Max)**: Extracts a structured blueprint (permissions, features, and optimal `design_profile`) from your raw prompt using advanced models like `claude-sonnet-4-5`.
+3. **Researcher Node (Pro/Max)**: A rigorous 5-phase deep research pipeline. It decomposes the blueprint into targeted questions, maps them to authoritative documentation URLs (e.g., MDN, Chrome APIs), parallel-fetches and strips the live HTML, pulls layout context from Nia, and synthesizes a master research brief.
+4. **Coder Node**: The heavy lifter. It writes the `manifest.json`, background workers, content scripts, and core logic based entirely on the fetched research.
+5. **UI Designer Node (Pro/Max)**: Completely eliminates generic "vibecoded" UIs. It injects strict, premium aesthetics based on your specific `design_profile` (like "Apple Minimalist" or "Linear Dark Mode") using real Tailwind tokens, padding scales, and modern fonts sourced from Nia Design Inspirations.
 6. **QA Node (Pro/Max)**: Launches a headless Playwright Chromium instance, loads the unpacked extension, and captures any console errors or crashes, seamlessly sending them back to the Coder for refinement.
-7. **Legal & Integration**: For higher tiers, Sidekick generates a standard Terms of Service document and injects third-party APIs.
+7. **Legal & Integration**: Automatically generates bespoke Markdown documents for Terms of Service and Privacy Policy, saving them securely to your project and exposing them via public standalone URLs. It also wires any necessary 3rd-party integrations.
 8. **Assembler Node**: Packages the finalized source code into a professional ZIP, ready for the Chrome Web Store.
 
 ## Manifest V3 (MV3) Compliance
@@ -49,9 +49,9 @@ When you download your ZIP, you'll generally find these files:
 
 Extensy uses **Polar** for secure, transparent subscription management. Depending on your tier, the backend routes to different functionality and LLMs.
 
-- **Free Tier**: Powered by `claude-haiku-4-5`. Uses the bare-bones Coder and Assembler nodes to generate simple extensions instantly.
-- **Pro Tier**: Powered by `claude-sonnet-4-5`. Activates the Architect for upfront planning, UI Designer for premium aesthetics, Playwright QA for built-in testing, and automatic Legal/TOS generation.
-- **Max Tier**: Gets all Pro features plus iterative advanced research (via the Nia API) and external 3rd-party integration wiring.
+- **Free Tier**: Powered by `claude-haiku-4-5`. Uses the bare-bones Coder and Assembler nodes to generate simple extensions instantly without live research.
+- **Pro Tier**: Powered by `claude-sonnet-4-5`. Activates the Architect for upfront planning, a 4-phase Deep Researcher (raw live web context + Nia), the premium UI Designer, Playwright QA, and automatic Legal generation.
+- **Max Tier**: Gets all Pro features plus Phase 5 full synthesis in the Researcher (creates a deeply structured brief instead of raw context) and external 3rd-party integration wiring.
 
 ## Iterative Development
 

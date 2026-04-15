@@ -11,11 +11,11 @@ A functional extension is not enough. To attract users and build trust, your sto
 
 - [ ] **Extension ZIP**: Your Extensy-generated, tested, and unedited or refined ZIP package.
 - [ ] **Store Icon**: 128x128px PNG. This is the main icon users see while browsing the store.
-- [ ] **Screenshots**: At least 1 (up to 5). Dimensions should be **1280x800px** or **640x400px**.
+- [ ] **Screenshots**: At least 1 (up to 5). Extensy AI will generate promotional slides for you, or you can supply your own (1280x800px).
 - [ ] **Short Description**: Max 132 characters. This is the summary shown in search results.
 - [ ] **Detailed Description**: Explain what your extension does, who it's for, and how to use it.
 - [ ] **Category**: Choose the most relevant category (e.g., Productivity, Shopping, or Developer Tools).
-- [ ] **Privacy Policy**: Required if your extension collects any user data.
+- [ ] **Privacy Policy & TOS**: Required if your extension collects any user data. Extensy AI generates these automatically as native documentation URLs for your project!
 
 ## Designing Your Icons
 
@@ -25,9 +25,9 @@ Your icons represent your brand. While Extensy provides basic ones, we recommend
   **Pro-tip**: Use your extension's icon from the `icons` folder as your store icon for consistency. If you're a developer, you can use tools like Figma or Canva to refine it.
 </Tip>
 
-## Capturing Great Screenshots
+## AI-Generated Promo Slides & Screenshots
 
-Users want to see the extension in action. Take screenshots that highlight your key features.
+Users want to see the extension in action. Extensy now auto-generates beautiful, CWS-ready promotional slides in our interactive modal viewer, which you can publish directly. If you want to take your own screenshots, capture:
 
 1. **Popup View**: Show the extension's popup UI clearly.
 2. **On-Page Injection**: If your extension modifies a webpage, show the "before" and "after".
@@ -53,7 +53,7 @@ Your description should be clear, professional, and highlight the value.
 </AccordionGroup>
 
 <Info>
-  **Note on Privacy Policies**: If your extension collects any user data (including browsing history or login tokens), you **must** provide a link to a privacy policy website.
+  **Note on Privacy Policies**: If your extension collects any user data, you **must** provide a link to a privacy policy website. Extensy automatically writes bespoke Privacy and Terms of Service Markdown documents tailored to your extension's codebase and hosts them dynamically on your project's unique URL (e.g., `/projects/[id]/privacy`), saving you the hassle of hosting legal docs yourself!
 </Info>
 
 ## Justifying Permissions
